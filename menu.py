@@ -177,4 +177,3 @@ class LevelMenu(Menu):
                 Varriables.lev=3
             self.run_display = False
             pass
-
