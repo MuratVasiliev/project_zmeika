@@ -33,7 +33,7 @@ class MainMenu(Menu):
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
 
         def display_menu(self):
-            """Прописываем пункты в меню и залеваем его черным цветом"""
+            """Прописываем пункты меню и заливаем его черным цветом"""
             self.run_display = True
             while self.run_display:
                 self.game.check_events()
@@ -48,4 +48,49 @@ class MainMenu(Menu):
                 self.game.draw_text("Score", 20, self.scorex, self.scorey)
                 self.draw_cursor()
                 self.blit_screen()
+    def move_cursor(self):
+        """Прописываем движение курсора при нажатии клавиш"""
+        if self.game.DOWN_KEY:
+            if self.state == 'Start':
+                self.cursor_rect.midtop = (
+                    self.levelx + self.offset, self.levely)
+                self.state = 'Level'
+            elif self.state == 'Level':
+                self.cursor_rect.midtop = (
+                    self.optionsx + self.offset, self.optionsy)
+                self.state = 'Options'
+            elif self.state == 'Options':
+                self.cursor_rect.midtop = (
+                    self.creditsx + self.offset, self.creditsy)
+                self.state = 'Credits'
+            elif self.state == 'Credits':
+                self.cursor_rect.midtop = (
+                    self.scorex + self.offset, self.scorey)
+                self.state = 'Score'
+            elif self.state == 'Score':
+                self.cursor_rect.midtop = (
+                    self.startx + self.offset, self.starty)
+                self.state = 'Start'
+        elif self.game.UP_KEY:
+            if self.state == 'Start':
+                self.cursor_rect.midtop = (
+                    self.scorex + self.offset, self.scorey)
+                self.state = 'Score'
+            elif self.state == 'Score':
+                self.cursor_rect.midtop = (
+                    self.creditsx + self.offset, self.creditsy)
+                self.state = 'Credits'
+            elif self.state == 'Level':
+                self.cursor_rect.midtop = (
+                    self.startx + self.offset, self.starty)
+                self.state = 'Start'
+            elif self.state == 'Credits':
+                self.cursor_rect.midtop = (
+                    self.optionsx + self.offset, self.optionsy)
+                self.state = 'Options'
+            elif self.state == 'Options':
+                self.cursor_rect.midtop = (
+                    self.levelx + self.offset, self.levely)
+                self.state = 'Level'
+
 
