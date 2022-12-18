@@ -1,7 +1,7 @@
 import pygame
-import Varriabl
+import Varriables
 
-##
+
 class Menu:
     def __init__(self, game):
         """Создаем курсор, который будет двигаться по меню"""
@@ -115,6 +115,7 @@ class MainMenu(Menu):
 
 class LevelMenu(Menu):
     """Прописываем положение курсора в Level Menu"""
+
     def __init__(self, game):
         Menu.__init__(self, game)
         self.state = 'Level 1'
@@ -137,4 +138,3 @@ class LevelMenu(Menu):
             self.game.draw_text("Level 3", 15, self.l3x, self.l3y)
             self.draw_cursor()
             self.blit_screen()
-
