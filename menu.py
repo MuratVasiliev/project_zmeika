@@ -9,3 +9,6 @@ class Menu:
         self.run_display = True
         self.cursor_rect = pygame.Rect(0, 0, 20, 20)
         self.offset = - 100
+    def draw_cursor(self):
+        """Рисуем курсор в форме звезды на экране"""
+        self.game.draw_text('*', 15, self.cursor_rect.x, self.cursor_rect.y)
