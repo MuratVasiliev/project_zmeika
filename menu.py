@@ -138,3 +138,43 @@ class LevelMenu(Menu):
             self.game.draw_text("Level 3", 15, self.l3x, self.l3y)
             self.draw_cursor()
             self.blit_screen()
+   def check_input(self):
+       """Прописываем движение курсора при нажатии клавиш"""
+        if self.game.BACK_KEY:
+            self.game.curr_menu = self.game.main_menu
+            self.run_display = False
+        elif self.game.UP_KEY:
+            if self.state == 'Level 1':
+                self.state = 'Level 3'
+                self.cursor_rect.midtop = (
+                    self.l3x + self.offset, self.l3y)
+            elif self.state == 'Level 3':
+                self.state = 'Level 2'
+                self.cursor_rect.midtop = (self.l2x + self.offset, self.l2y)
+            elif self.state == 'Level 2':
+                self.state = 'Level 1'
+                self.cursor_rect.midtop = (self.l1x + self.offset, self.l1y)
+        elif self.game.DOWN_KEY:
+            if self.state == 'Level 1':
+                self.state = 'Level 2'
+                self.cursor_rect.midtop = (
+                    self.l2x + self.offset, self.l2y)
+            elif self.state == 'Level 2':
+                self.state = 'Level 3'
+                self.cursor_rect.midtop = (self.l3x + self.offset, self.l3y)
+            elif self.state == 'Level 3':
+                self.state = 'Level 1'
+                self.cursor_rect.midtop = (self.l1x + self.offset, self.l1y)
+        elif self.game.START_KEY:
+            if self.state == 'Level 1':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.lev=1
+            elif self.state == 'Level 2':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.lev=2
+            elif self.state == 'Level 3':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.lev=3
+            self.run_display = False
+            pass
+
