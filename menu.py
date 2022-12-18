@@ -1,7 +1,7 @@
 import pygame
 import Varriabl
 
-
+##
 class Menu:
     def __init__(self, game):
         """Создаем курсор, который будет двигаться по меню"""
