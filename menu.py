@@ -1,2 +1,2 @@
 import pygame
-import Varriables
+import Varriabl
