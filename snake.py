@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 fps = 15
 foodx = w // 2
 foody = w // 2
-game_over_screen = pygame.image.load('game_over.jpg')
+
 
 class Cube:
     def __init__(self, pos):
@@ -85,10 +85,10 @@ class Food:
 
     def check(self):
         for cube_number in range(len(s.body)):
-            if self.x == s.body[cube_number].pos[0] and self.y == s.body[cube_number - 1].pos[1]:
+            if self.x == s.body[cube_number].pos[0] and self.y == s.body[cube_number].pos[1]:
                 return True
             else:
-                return False
+                self.rand
 
 
 def draw_grid(w, rows, surface):  # сетка
@@ -133,7 +133,7 @@ while sn_running:
     for event in s.body[:-1]:  # проверка на самопересечение
         if s.head.pos == event.pos:
 
-            screen.blit(game_over_screen, (0,0))
+            # screen.blit(game_over_screen, (0,0))
             print('fuck')
 
     s.draw()  # хуёу
