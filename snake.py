@@ -2,6 +2,11 @@ import pygame
 import random
 import pygame
 
+BLACK=(0,0,0)
+GREEN=(0, 255, 50)
+RED=(0,0, 255)
+BLUE=(255, 0, 0)
+GREY=(100, 100, 100)
 dir = [1, 0]
 w = 800
 h = 600
@@ -29,7 +34,7 @@ class Cube:
     def __init__(self, pos):
         self.pos = pos
         self.surf = pygame.Surface((dis, dis))
-        self.surf.fill((0, 0, 255))
+        self.surf.fill(BLUE)
         self.rect = self.surf.get_rect(topleft=pos)
         self.pos = [self.rect.left, self.rect.top]
 
@@ -46,21 +51,13 @@ class Snake:
         self.head = self.body[len(self.body)-1]
         self.tail = self.body[0]
 
-    def add_Cube(self):
-        self.body.append(Cube(self.tail.pos))
+    def add_Cube(self, pos):
+        self.body.append(0)
         self.head = self.body[len(self.body)-1]
-        # self.head = Cube(self.tail.pos)
+        self.head = Cube(pos)
 
     def move(self):
-        self.tail.pos = [self.head.pos[0] + dir[0]*dis, self.head.pos[1] + dir[1]*dis]
-        if self.head.pos[0] >= w:
-            self.head.pos[0] = 0
-        if self.head.pos[0] <= -dis:
-            self.head.pos[0] = w-dis
-        if self.head.pos[1] >= h:
-            self.head.pos[1] = 0
-        if self.head.pos[1] <= -dis:
-            self.head.pos[1] = h-dis
+        self.tail.pos = [self.head.pos[0] + dir[0], self.head.pos[1] + dir[1]]
 
     def draw(self):
         for i in self.body:
@@ -68,6 +65,11 @@ class Snake:
             i.surf.fill((0, 0, 255))
             i.rect = i.surf.get_rect(topleft=i.pos)
             screen.blit(i.surf, i.rect)
+
+def draw_food(rows, screen, dis):
+    foodx=random.randrange(rows)
+    foody=random.randrange(rows*h/w)
+    pygame.draw.rect(screen, GREEN, [foodx*40, foody*40, dis, dis])
 
 
 def draw_grid(w, rows, surface):
@@ -79,13 +81,12 @@ def draw_grid(w, rows, surface):
         x = x + size_btwn
         y = y + size_btwn
 
-        pygame.draw.line(surface, (100, 100, 100), (x, 0), (x, w))
-        pygame.draw.line(surface, (100, 100, 100), (0, y), (w, y))
+        pygame.draw.line(surface, GREY, (x, 0), (x, w))
+        pygame.draw.line(surface, GREY, (0, y), (w, y))
 
 
-def re_dir():
-    global dir
-    for i in pygame.event.get():
+def re_dir(events):
+    for i in events:
         if i.type == pygame.KEYDOWN:
             if i.key == pygame.K_UP and dir != [0, 1]:
                 dir = [0, -1]
@@ -98,28 +99,11 @@ def re_dir():
 
 s = Snake()
 
-
 while sn_running:
     pygame.display.update()
     clock.tick(fps)
-    screen.fill((0, 0, 0))
+    screen.fill(BLACK)
     draw_grid(w, rows, screen)
-    for i in pygame.event.get():
-        if i.type == pygame.KEYDOWN:
-            if i.key == pygame.K_UP and dir != [0, 1]:
-                dir = [0, -1]
-            if i.key == pygame.K_DOWN and dir != [0, -1]:
-                dir = [0, 1]
-            if i.key == pygame.K_LEFT and dir != [1, 0]:
-                dir = [-1, 0]
-            if i.key == pygame.K_RIGHT and dir != [-1, 0]:
-                dir = [1, 0]
-
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                print(s.body)
-                s.add_Cube()
     s.move()
     s.draw()
 
