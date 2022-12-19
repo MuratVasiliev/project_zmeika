@@ -9,7 +9,7 @@ import menu
 
 direction_x = cl.NumVariables(1)
 direction_y = cl.NumVariables(0)
-
+final = cl.BullVariables(False)
 pg.init()
 sn_running = cl.BullVariables(False)
 screen = pg.display.set_mode((const.WIDTH, const.WIDTH))
@@ -25,7 +25,9 @@ class Snake:
     def __init__(self):
         self.body = []
         self.body = [cl.Cube([0, 0])]
-
+    def reborn(self):
+        self.body = []
+        self.body = [cl.Cube([0, 0])]
     def add_Cube(self):
         self.body.insert(0, cl.Cube(self.body[0].pos))
 
@@ -87,7 +89,7 @@ class Food:
                 self.rand
 
 def your_score(score,x,y):
-    value = score_font.render(f'Your Score: {score.getter()}', True, (0, 0, 0))
+    value = score_font.render(f'Your Score: {score}', True, (0, 0, 0))
     screen.blit(value,[x, y])
 
 def message(msg, color,x,y):
@@ -120,7 +122,7 @@ def snake_loop():
     pg.display.update()
     clock.tick(const.FPS)
     screen.fill(pg.Color('#EFFFA5'))
-    your_score(score,30,30)
+    your_score(score.getter(),30,30)
     for event in pg.event.get():  # изменение направления и приращение попы на пробел
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_UP and direction_y.getter() != 1:
@@ -147,16 +149,24 @@ def snake_loop():
 
     for event in snake.body[:-1]:  # проверка на самопересечение
         if snake.head.pos == event.pos:
-            screen.fill(const.BLUE)
-            message("Вы проиграли!", const.BLACK, 300, 200)
-            your_score(score,const.WIDTH/3, const.WIDTH/2)
-            message("Для выхода в меню нажмите Enter", const.BLACK, 100, 500)
-            pg.display.update()
-            clock.tick(0.1)
-            sn_running.setter(False)
-            menu.menu_running.setter(True)
+            final.changer()
+            while final.getter():
+                screen.fill(const.BLUE)
+                message("Вы проиграли!", const.BLACK, 230, 200)
+                your_score(score.getter(),230, const.WIDTH/2)
+                message("Для выхода в меню нажмите Enter", const.BLACK, 100, 500)
+                pg.display.update()
+                for event in pg.event.get():
+                    if event.type == pg.KEYDOWN:
+                        if event.key == pg.K_RETURN:
+                            score.setter(0)
+                            snake.reborn()
+                            sn_running.setter(False)
+                            menu.menu_running.setter(True)
+                            final.changer()
 
             print('fuck')
+
 
     snake.draw()  # хуёу
     draw_grid(const.WIDTH, const.ROWS, screen)
