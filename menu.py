@@ -9,7 +9,7 @@ width, height = const.WIDTH, const.WIDTH       # Screen's width and height
 background_color = const.CYAN
 pg.init()
 pg.display.init()
-
+lev=1
 screen = pg.display.set_mode((width, height))
 screen.fill(background_color)
 pg.display.flip()
@@ -53,10 +53,10 @@ def menu(running):
                 if Varriables.lev == 1:
                     menu_running.setter(False)
                     sn.sn_running.setter(True)
-                if Varriables.lev == 2:
+                elif Varriables.lev == 2:
                     menu_running.setter(False)
-                    sl.sn2_running.setter(True)
-                if Varriables.lev == 3:
+                    #sl.sn2_running.setter(True)
+                elif Varriables.lev == 3:
                     menu_running.setter(False)
                     sl.sn1_running.setter(True)
             if regime_button.is_click(event):
@@ -83,15 +83,15 @@ def levelmenu(running):
                 menu_running.setter(True)
                 Varriables.lev=1
          if event.type == pg.MOUSEBUTTONDOWN:
-            if PVP_button.is_click(event):
+            if Wall_button.is_click(event):
                 levelmenu_running.setter(False)
                 menu_running.setter(True)
-                Varriables.lev=3
+                Varriables.lev=2
          if event.type == pg.MOUSEBUTTONDOWN:
             if PVP_button.is_click(event):
                 levelmenu_running.setter(False)
                 menu_running.setter(True)
-                Varriables.lev=2
+                Varriables.lev=3
          if event.type == pg.KEYDOWN:
             if event.key == pg.K_BACKSPACE:
                 levelmenu_running.setter(False)
