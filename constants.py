@@ -9,4 +9,6 @@ WIDTH = 600
 ROWS = 20
 DIS = WIDTH // ROWS
 FPS = 15
-number_size = 60
+NUMBER_SIZE = 60
+TEXTX = WIDTH/2-75
+TEXTH = 45
