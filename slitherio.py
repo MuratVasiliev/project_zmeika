@@ -15,18 +15,18 @@ start_food = 5
 # GREY = (100, 100, 100)
 dir = [0, 0]
 dir1 = [0, 0]
-# w = 600
+w = 600
 # h = 600
 rows = 20
-dis = const.w // rows
+dis = w // rows
 pg.init()
 sn1_running = cl.BullVariables(False)
-screen = pg.display.set_mode((const.w, const.w))
+screen = pg.display.set_mode((w, w))
 all_sprites = pg.sprite.Group()
 clock = pg.time.Clock()
 fps = 15
-foodx = const.w // 2
-foody = const.w // 2
+foodx = w // 2
+foody = w // 2
 
 
 class Cube:
@@ -62,14 +62,14 @@ class Snakes:
             k.body.append(Cube([k.head.pos[0] + k.dir[0] * dis, k.head.pos[1] + k.dir[1] * dis]))
             k.head = k.body[len(k.body) - 1]
             k.body.pop(0)
-            if k.head.pos[0] >= const.w:
+            if k.head.pos[0] >= w:
                 k.head.pos[0] = 0
             if k.head.pos[0] <= -dis:
-                k.head.pos[0] = const.w - dis
-            if k.head.pos[1] >= const.w:
+                k.head.pos[0] = w - dis
+            if k.head.pos[1] >= w:
                 k.head.pos[1] = 0
             if k.head.pos[1] <= -dis:
-                k.head.pos[1] = const.w - dis
+                k.head.pos[1] = w - dis
             print('move2')
 
 
@@ -117,10 +117,10 @@ class Snake:
 
 class Bigmak:
     def __init__(self):
-        self.list = [Food(const.w)]
+        self.list = [Food(w)]
 
     def add_Food(self):
-        self.list.append(Food(const.w))
+        self.list.append(Food(w))
 
     def draw(self, screen, dis):
         for food in self.list:
@@ -199,4 +199,4 @@ def snake_loop1():
 
     snakes.move()
     snakes.draw()
-    draw_grid(const.w, rows, screen)
+    draw_grid(w, rows, screen)
