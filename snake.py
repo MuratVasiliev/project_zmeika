@@ -139,6 +139,7 @@ def snake_loop():
     food.draw(screen, const.DIS)  # отрисовка еды
     food.eat(snake.body[len(snake.body) - 1].pos[0], snake.body[len(snake.body) - 1].pos[1])  # проверка на съедение
     snake.move()  # хуюв
+
     for event in snake.body[:-1]:  # проверка на самопересечение
         if snake.head.pos == event.pos:
             pass

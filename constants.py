@@ -6,3 +6,4 @@ WIDTH = 600
 ROWS = 20
 DIS = WIDTH // ROWS
 FPS = 15
+number_size = 60

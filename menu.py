@@ -12,14 +12,14 @@ screen = pg.display.set_mode((width, height))
 screen.fill(background_color)
 pg.display.flip()
 menu_running = cl.BullVariables(True)
-play_button = cl.Button(250, 150, 30, 30,'Play')
-level_button = cl.Button(250, 200, 30, 30,'Level')
-options_button = cl.Button (250, 250, 30, 30, 'Options')
-credits_button = cl.Button(250, 250, 30 , 30, 'Credits')
+play_button = cl.Button(250, 150, const.number_size, const.number_size,'Play')
+level_button = cl.Button(250, 200, const.number_size, const.number_size,'Level')
+options_button = cl.Button (250, 250, const.number_size, const.number_size, 'Options')
+credits_button = cl.Button(250, 250, const.number_size , const.number_size, 'Credits')
 
-quit_button = cl.Button(250, 300, 30, 30, 'Quit')
+quit_button = cl.Button(250, 300, const.number_size, const.number_size, 'Quit')
 
-level1_button = cl.Button(250, 200, 30, 30,'Level')
+level1_button = cl.Button(250, 200, const.number_size, const.number_size,'Level')
 
 
 
