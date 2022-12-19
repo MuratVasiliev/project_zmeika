@@ -203,6 +203,27 @@ class OptionsMenu(Menu):
             self.draw_cursor()
             self.blit_screen()
 
+    def check_input(self):
+        """Прописываем движение курсора при нажатии клавиш"""
+        if self.game.BACK_KEY:
+            self.game.curr_menu = self.game.main_menu
+            self.run_display = False
+        elif self.game.UP_KEY or self.game.DOWN_KEY:
+            if self.state == 'Difficulty':
+                self.state = 'Controls'
+                self.cursor_rect.midtop = (
+                    self.controlsx + self.offset, self.controlsy)
+            elif self.state == 'Controls':
+                self.state = 'Difficulty'
+                self.cursor_rect.midtop = (self.Difx + self.offset, self.Dify)
+        elif self.game.START_KEY:
+            if self.state == 'Controls':
+                self.game.curr_menu = self.game.controls
+            elif self.state == 'Difficulty':
+                self.game.curr_menu = self.game.difficulty
+            self.run_display = False
+            pass
+
 
 
 
