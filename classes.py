@@ -1,6 +1,6 @@
 import pygame as pg
-
-
+import random
+import constants as const
 class NumVariables:
     """Class of numeric variables"""
 
@@ -56,3 +56,9 @@ class Button:
         my_font = pg.font.SysFont("monospace", 30)
         text = my_font.render(str(self.text), 1, (255, 255, 255))
         screen.blit(text, (self.x, self.y))
+
+class Cube:
+    def __init__(self, pos):
+        self.pos = pos
+
+
