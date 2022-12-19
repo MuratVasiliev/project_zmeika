@@ -8,25 +8,25 @@ import menu
 
 start_length = 1
 start_food = 5
-BLACK = (0, 0, 0)
-GREEN = (0, 255, 50)
-RED = (0, 0, 255)
-BLUE = (255, 0, 0)
-GREY = (100, 100, 100)
+# BLACK = (0, 0, 0)
+# GREEN = (0, 255, 50)
+# RED = (0, 0, 255)
+# BLUE = (255, 0, 0)
+# GREY = (100, 100, 100)
 dir = [0, 0]
 dir1 = [0, 0]
-w = 800
+# w = 600
 # h = 600
 rows = 20
-dis = w // rows
+dis = const.w // rows
 pg.init()
 sn1_running = cl.BullVariables(False)
-screen = pg.display.set_mode((w, w))
+screen = pg.display.set_mode((const.w, const.w))
 all_sprites = pg.sprite.Group()
 clock = pg.time.Clock()
-fps = 10
-foodx = w // 2
-foody = w // 2
+fps = 15
+foodx = const.w // 2
+foody = const.w // 2
 
 
 class Cube:
@@ -36,7 +36,7 @@ class Cube:
 
 class Snakes:
     def __init__(self):
-        self.list = [Snake([0, 1], [0, 0], BLUE)]
+        self.list = [Snake([0, 1], [0, 0], const.BLUE)]
 
     def add_snake(self, dir, pos, color):
         self.list.append(Snake(dir, pos, color))
@@ -62,14 +62,14 @@ class Snakes:
             k.body.append(Cube([k.head.pos[0] + k.dir[0] * dis, k.head.pos[1] + k.dir[1] * dis]))
             k.head = k.body[len(k.body) - 1]
             k.body.pop(0)
-            if k.head.pos[0] >= w:
+            if k.head.pos[0] >= const.w:
                 k.head.pos[0] = 0
             if k.head.pos[0] <= -dis:
-                k.head.pos[0] = w - dis
-            if k.head.pos[1] >= w:
+                k.head.pos[0] = const.w - dis
+            if k.head.pos[1] >= const.w:
                 k.head.pos[1] = 0
             if k.head.pos[1] <= -dis:
-                k.head.pos[1] = w - dis
+                k.head.pos[1] = const.w - dis
             print('move2')
 
 
@@ -117,10 +117,10 @@ class Snake:
 
 class Bigmak:
     def __init__(self):
-        self.list = [Food(w)]
+        self.list = [Food(const.w)]
 
     def add_Food(self):
-        self.list.append(Food(w))
+        self.list.append(Food(const.w))
 
     def draw(self, screen, dis):
         for food in self.list:
@@ -153,14 +153,14 @@ def draw_grid(w, rows, surface):  # сетка
         x = x + size_btwn
         y = y + size_btwn
 
-        pg.draw.line(surface, GREY, (x, 0), (x, w))
-        pg.draw.line(surface, GREY, (0, y), (w, y))
+        pg.draw.line(surface, const.GREY, (x, 0), (x, w))
+        pg.draw.line(surface, const.GREY, (0, y), (w, y))
 
 
 
 
 snakes = Snakes()
-snakes.add_snake([0, -1], [0, rows * dis], RED)
+snakes.add_snake([0, -1], [0, rows * dis], const.RED)
 
 bigmak = Bigmak()
 for i in range(start_food):
@@ -199,4 +199,4 @@ def snake_loop1():
 
     snakes.move()
     snakes.draw()
-    draw_grid(w, rows, screen)
+    draw_grid(const.w, rows, screen)
