@@ -14,7 +14,9 @@ w = 600
 rows = 10
 dis = w // rows
 pygame.init()
-sn_running = False
+sn_running = True
+font_style = pygame.font.SysFont("bahnschrift", 25)
+score_font = pygame.font.SysFont("comicsansms", 35)
 screen = pygame.display.set_mode((w, w))
 all_sprites = pygame.sprite.Group()
 clock = pygame.time.Clock()
@@ -87,6 +89,7 @@ class Food:
             screen.fill(pygame.Color('#A5FFAB'))
             s.add_Cube()
             print('eated')
+            score.adder(1)
 
     def check(self):
         for cube_number in range(len(s.body)):
