@@ -143,3 +143,5 @@ while sn_running:
 
     s.draw()  # хуёу
     draw_grid(w, rows, screen)
+
+
