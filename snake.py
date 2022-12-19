@@ -3,7 +3,9 @@ import random
 import pygame as pg
 import classes as cl
 import constants as const
+import os
 
+import menu
 
 direction_x = cl.NumVariables(1)
 direction_y = cl.NumVariables(0)
@@ -93,7 +95,6 @@ def your_score(score):
 
 
 
-
 def draw_grid(width, rows, surface):  # сетка
     size_between = width // rows
 
@@ -141,9 +142,14 @@ def snake_loop():
     snake.move()  # хуюв
     for event in snake.body[:-1]:  # проверка на самопересечение
         if snake.head.pos == event.pos:
-            pass
-            # screen.blit(game_over_screen, (0,0))
-            #print('fuck')
+            screen.fill(const.BLUE)
+            pg.display.update()
+            clock.tick(0.1)
+            sn_running.setter(False)
+            menu.menu_running.setter(True)
+
+            #message("Вы проиграли! Нажмите Q для выхода или C для повторной игры", red)
+            print('fuck')
 
     snake.draw()  # хуёу
     draw_grid(const.WIDTH, const.ROWS, screen)
