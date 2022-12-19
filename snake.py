@@ -28,7 +28,7 @@ score = cl.NumVariables()
 
 def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0,0,0))
-    screen.blit(value, [100, 100])
+    screen.blit(value, [30, 30])
 #game_over_screen = pygame.image.load('game_over.jpg')
 
 class Cube:
