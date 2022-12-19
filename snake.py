@@ -90,6 +90,10 @@ def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0, 0, 0))
     screen.blit(value, [30, 30])
 
+def message(msg, color):
+    mesg = font_style.render(msg, True, color)
+    screen.blit(mesg, [const.WIDTH / 3, const.WIDTH/ 3])
+
 
 
 
@@ -144,12 +148,12 @@ def snake_loop():
     for event in snake.body[:-1]:  # проверка на самопересечение
         if snake.head.pos == event.pos:
             screen.fill(const.BLUE)
+            message("Вы проиграли!", const.BLACK)
             pg.display.update()
             clock.tick(0.1)
             sn_running.setter(False)
             menu.menu_running.setter(True)
 
-            #message("Вы проиграли! Нажмите Q для выхода или C для повторной игры", red)
             print('fuck')
 
     snake.draw()  # хуёу
