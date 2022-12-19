@@ -20,7 +20,7 @@ sn_running = True
 screen = pygame.display.set_mode((800, 600))
 all_sprites = pygame.sprite.Group()
 clock = pygame.time.Clock()
-fps = 5
+fps = 50
 
 
 # head_surf = pygame.Surface((50, 50))
@@ -125,4 +125,3 @@ while sn_running:
         if event.type == pygame.QUIT:
             exit()
 
-#
