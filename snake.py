@@ -64,7 +64,7 @@ class Snake:
 def draw_food(rows, screen, dis):
     foodx=random.randrange(rows)
     foody=random.randrange(rows*h/w)
-    pygame.draw.rect(screen, (0, 255, 198), [foodx*40, foody*40, dis, dis])
+    pygame.draw.rect(screen, (0, 255, 50), [foodx*40, foody*40, dis, dis])
 
 
 def draw_grid(w, rows, surface):
