@@ -114,9 +114,9 @@ class MainMenu(Menu):
 
 
 class LevelMenu(Menu):
-    """Прописываем положение курсора в Level Menu"""
 
     def __init__(self, game):
+        """Прописываем положение курсора в Level Menu"""
         Menu.__init__(self, game)
         self.state = 'Level 1'
         self.l1x, self.l1y = self.mid_w, self.mid_h + 20
@@ -177,3 +177,15 @@ class LevelMenu(Menu):
                 Varriables.lev=3
             self.run_display = False
             pass
+
+
+
+class OptionsMenu(Menu):
+    def __init__(self, game):
+        """Прописываем положение курсора в OptionsMenu"""
+        Menu.__init__(self, game)
+        self.state = 'Difficulty'
+        self.Difx, self.Dify = self.mid_w, self.mid_h + 20
+        self.controlsx, self.controlsy = self.mid_w, self.mid_h + 40
+        self.cursor_rect.midtop = (self.Difx + self.offset, self.Dify)
+
