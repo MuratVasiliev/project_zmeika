@@ -38,13 +38,14 @@ class BullVariables:
 
 class Button:
 
-    def __init__ (self, x, y, xsize, ysize, text):
+    def __init__ (self, x, y, xsize, ysize, text, colour):
         """ constructor of class "Button" """
         self.x = x
         self.y = y
         self.text = text
         self.xsize = xsize
         self.ysize = ysize
+        self.colour=colour
 
     def is_click(self, event):
         """ return True if you click on the Button """
@@ -54,7 +55,7 @@ class Button:
     def write_text_on_button(self, screen):
         """ writing text on the element of class "Button" """
         my_font = pg.font.SysFont("monospace", 30)
-        text = my_font.render(str(self.text), 1, (255, 255, 255))
+        text = my_font.render(str(self.text), 1, self.colour)
         screen.blit(text, (self.x, self.y))
 
 class Cube:
