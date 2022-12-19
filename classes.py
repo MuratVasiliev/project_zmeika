@@ -1,4 +1,6 @@
 import pygame as pg
+
+
 class NumVariables:
     """Class of numeric variables"""
 
@@ -13,6 +15,7 @@ class NumVariables:
 
     def getter(self):
         return self._num
+
 
 class BullVariables:
     """Class of Bullian variables"""
@@ -32,9 +35,10 @@ class BullVariables:
     def getter(self):
         return self._bul
 
+
 class Button:
 
-    def init(self, x, y, xsize, ysize, text):
+    def __init__ (self, x, y, xsize, ysize, text):
         """ constructor of class "Button" """
         self.x = x
         self.y = y
