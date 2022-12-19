@@ -189,3 +189,20 @@ class OptionsMenu(Menu):
         self.controlsx, self.controlsy = self.mid_w, self.mid_h + 40
         self.cursor_rect.midtop = (self.Difx + self.offset, self.Dify)
 
+   def display_menu(self):
+       """"Прописываем меню при нажатии OptionsMenu"""
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            self.check_input()
+            self.game.display.fill((0, 0, 0))
+            self.game.draw_text('Options', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 30)
+            self.game.draw_text("Difficulty", 15, self.Difx, self.Dify)
+            self.game.draw_text("Controls", 15, self.controlsx, self.controlsy)
+            self.draw_cursor()
+            self.blit_screen()
+
+
+
+
