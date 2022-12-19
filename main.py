@@ -1,7 +1,11 @@
-from game import Game
+import menu
+import snake as sn
+import classes as cl
 
-g = Game()
-while g.running:
-    g.curr_menu.display_menu()
-    g.game_loop()
+running = cl.BullVariables(True)
 
+while running.getter():
+    if menu.menu_running.getter():
+        menu.menu(running)
+    if sn.sn_running.getter():
+        sn.snake_loop()

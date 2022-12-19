@@ -9,18 +9,18 @@ RED = (0, 0, 255)
 BLUE = (255, 0, 0)
 GREY = (100, 100, 100)
 dir = [1, 0]
-w = 600
+width = 600
 # h = 600
 rows = 20
-dis = w // rows
+dis = width // rows
 pygame.init()
-sn_running = True
-screen = pygame.display.set_mode((w, w))
+sn_running = cl.BullVariables(False)
+screen = pygame.display.set_mode((width, width))
 all_sprites = pygame.sprite.Group()
 clock = pygame.time.Clock()
 fps = 15
-foodx = w // 2
-foody = w // 2
+foodx = width // 2
+foody = width // 2
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("Elektra", 35)
 
@@ -47,14 +47,14 @@ class Snake:
         self.body.append(Cube([self.head.pos[0] + dir[0] * dis, self.head.pos[1] + dir[1] * dis]))
         self.head = self.body[len(self.body) - 1]
         self.body.pop(0)
-        if self.head.pos[0] >= w:
+        if self.head.pos[0] >= width:
             self.head.pos[0] = 0
         if self.head.pos[0] <= -dis:
-            self.head.pos[0] = w - dis
-        if self.head.pos[1] >= w:
+            self.head.pos[0] = width - dis
+        if self.head.pos[1] >= width:
             self.head.pos[1] = 0
         if self.head.pos[1] <= -dis:
-            self.head.pos[1] = w - dis
+            self.head.pos[1] = width - dis
 
     def draw(self):
         for i in self.body:
@@ -113,8 +113,10 @@ def draw_grid(w, rows, surface):  # сетка
 
 
 s = Snake()  # инициализация анаконды
-f = Food(w)  # яблОчко
-while sn_running:
+f = Food(width)  # яблОчко
+
+
+def snake_loop():
     pygame.display.update()
     clock.tick(fps)
     screen.fill(pygame.Color('#EFFFA5'))
@@ -145,4 +147,4 @@ while sn_running:
             print('fuck')
 
     s.draw()  # хуёу
-    draw_grid(w, rows, screen)
+    draw_grid(width, rows, screen)
