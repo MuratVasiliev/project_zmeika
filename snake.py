@@ -24,10 +24,12 @@ fps = 15
 foodx = w // 2
 foody = w // 2
 score = cl.NumVariables()
+
+
 def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0,0,0))
     screen.blit(value, [100, 100])
-game_over_screen = pygame.image.load('game_over.jpg')
+#game_over_screen = pygame.image.load('game_over.jpg')
 
 class Cube:
     def __init__(self, pos):
@@ -138,11 +140,11 @@ while sn_running:
     f.draw(screen, dis)  # отрисовка еды
     f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
     s.move()  # хуюв
-    for event in s.body[:-1]:  # проверка на самопересечение
-        if s.head.pos == event.pos:
-
-            screen.blit(game_over_screen, (0,0))
-            print('fuck')
+    #for event in s.body[:-1]:  # проверка на самопересечение
+    #    if s.head.pos == event.pos:
+#
+    #        screen.blit(game_over_screen, (0,0))
+    #        print('fuck')
 
     s.draw()  # хуёу
     draw_grid(w, rows, screen)
