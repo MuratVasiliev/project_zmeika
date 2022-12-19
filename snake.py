@@ -52,7 +52,15 @@ class Snake:
         self.head = Cube(pos)
 
     def move(self):
-        self.tail.pos = [self.head.pos[0] + dir[0], self.head.pos[1] + dir[1]]
+        self.tail.pos = [self.head.pos[0] + dir[0]*dis, self.head.pos[1] + dir[1]*dis]
+        if self.head.pos[0] >= w:
+            self.head.pos[0] = 0
+        if self.head.pos[0] <= -dis:
+            self.head.pos[0] = w-dis
+        if self.head.pos[1] >= h:
+            self.head.pos[1] = 0
+        if self.head.pos[1] <= -dis:
+            self.head.pos[1] = w-dis
 
     def draw(self):
         for i in self.body:
@@ -75,8 +83,9 @@ def draw_grid(w, rows, surface):
         pygame.draw.line(surface, (100, 100, 100), (0, y), (w, y))
 
 
-def re_dir(events):
-    for i in events:
+def re_dir():
+    global dir
+    for i in pygame.event.get():
         if i.type == pygame.KEYDOWN:
             if i.key == pygame.K_UP and dir != [0, 1]:
                 dir = [0, -1]
@@ -95,7 +104,7 @@ while sn_running:
     clock.tick(fps)
     screen.fill((0, 0, 0))
     draw_grid(w, rows, screen)
-
+    re_dir()
     s.move()
     s.draw()
 
