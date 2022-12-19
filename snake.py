@@ -133,7 +133,7 @@ while sn_running:
     for event in s.body[:-1]:  # проверка на самопересечение
         if s.head.pos == event.pos:
 
-            screen.blit(game_over_screen, (400,400))
+            screen.blit(game_over_screen, (0,0))
             print('fuck')
 
     s.draw()  # хуёу
