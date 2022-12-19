@@ -9,9 +9,9 @@ RED = (0, 0, 255)
 BLUE = (255, 0, 0)
 GREY = (100, 100, 100)
 dir = [1, 0]
-w = 600
+w = 800
 # h = 600
-rows = 10
+rows = 20
 dis = w // rows
 pygame.init()
 sn_running = True
