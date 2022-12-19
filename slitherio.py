@@ -20,7 +20,7 @@ w = 800
 rows = 20
 dis = w // rows
 pg.init()
-sn1_running = True
+sn1_running = cl.BullVariables(False)
 screen = pg.display.set_mode((w, w))
 all_sprites = pg.sprite.Group()
 clock = pg.time.Clock()
@@ -171,34 +171,32 @@ for snake in snakes.list:
         snake.add_Cube()
 
 
-def snake_loop():
-    while sn1_running:
-        pg.display.update()
-        clock.tick(fps)
-        screen.fill(pg.Color('#EFFFA5'))
-
-        for event in pg.event.get():  # изменение направления и приращение попы на пробел
-            if event.type == pg.KEYDOWN:
-                for snake in snakes.list:
-                    snake.re_dir(event)
-            if event.type == pg.QUIT:
-                exit()
-        keys = pg.key.get_pressed()
-
-        if keys[pg.K_SPACE]:
+def snake_loop1():
+    pg.display.update()
+    clock.tick(const.FPS)
+    screen.fill(pg.Color('#EFFFA5'))
+    for event in pg.event.get():  # изменение направления и приращение попы на пробел
+        if event.type == pg.KEYDOWN:
             for snake in snakes.list:
-                snake.add_Cube()
-        for food in bigmak.list:
-            for snake in snakes.list:
-                food.eat(snake)
-        bigmak.draw(screen, dis)
-        # f.draw(screen, dis)  # отрисовка еды
-        # f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
-        # f.eat1(s1.body[len(s1.body) - 1].pos[0], s1.body[len(s1.body) - 1].pos[1])
+                snake.re_dir(event)
+        if event.type == pg.QUIT:
+            exit()
+    keys = pg.key.get_pressed()
 
+    if keys[pg.K_SPACE]:
         for snake in snakes.list:
-            snake.uyebalsya(snake.body[len(snake.body) - 1].pos)
+            snake.add_Cube()
+    for food in bigmak.list:
+        for snake in snakes.list:
+            food.eat(snake)
+    bigmak.draw(screen, dis)
+    # f.draw(screen, dis)  # отрисовка еды
+    # f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
+    # f.eat1(s1.body[len(s1.body) - 1].pos[0], s1.body[len(s1.body) - 1].pos[1])
 
-        snakes.move()
-        snakes.draw()
-        draw_grid(w, rows, screen)
+    for snake in snakes.list:
+        snake.uyebalsya(snake.body[len(snake.body) - 1].pos)
+
+    snakes.move()
+    snakes.draw()
+    draw_grid(w, rows, screen)
