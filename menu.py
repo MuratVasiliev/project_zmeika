@@ -225,5 +225,146 @@ class OptionsMenu(Menu):
             pass
 
 
+class CreditsMenu(Menu):
+    """Аналогично с предыдущими current menu делаем CreditsMenu"""
+    def __init__(self, game):
+        Menu.__init__(self, game)
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            if self.game.START_KEY or self.game.BACK_KEY:
+                self.game.curr_menu = self.game.main_menu
+                self.run_display = False
+            self.game.display.fill(self.game.BLACK)
+            self.game.draw_text('Credits', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text('Made in MIPT, Б02-213 Group', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 10)
+            self.game.draw_text('Muratov Vasiliy', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 25)
+            self.game.draw_text('Pak Boris', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 40)
+            self.game.draw_text('Steksov Ivan', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 55)
+            self.blit_screen()
+
+class ScoreMenu(Menu):
+    """Аналогично с предыдущими current menu делаем ScoreMenu"""
+    def __init__(self, game):
+        Menu.__init__(self, game)
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            if self.game.START_KEY or self.game.BACK_KEY:
+                self.game.curr_menu = self.game.main_menu
+                self.run_display = False
+            self.game.display.fill(self.game.BLACK)
+            self.game.draw_text('Score:', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text('1. ' + str(sorted(Varriables.score)[-1]), 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 10)
+            self.game.draw_text('2. ' + str(sorted(Varriables.score)[-2]), 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 30)
+            self.game.draw_text('3. ' + str(sorted(Varriables.score)[-3]), 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 50)
+            self.blit_screen()
+
+
+class ControlsMenu(Menu):
+    """Аналогично с предыдущими current menu делаем ControlsMenu"""
+    def __init__(self, game):
+        Menu.__init__(self, game)
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            if self.game.START_KEY or self.game.BACK_KEY:
+                self.game.curr_menu = self.game.main_menu
+                self.run_display = False
+            self.game.display.fill(self.game.BLACK)
+            self.game.draw_text('Controls:', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text('Arrow Keys - change snake direction', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 10)
+            self.game.draw_text('BackSpace - return to previous menu', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 30)
+            self.game.draw_text('Enter - enter', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 50)
+            self.blit_screen()
+
+
+class DifficultyMenu(Menu):
+    """Аналогично с предыдущими current menu делаем DifficultyMenu"""
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.state = '1'
+        self.d1x, self.d1y = self.mid_w, self.mid_h + 20
+        self.d2x, self.d2y = self.mid_w, self.mid_h + 40
+        self.d3x, self.d3y = self.mid_w, self.mid_h + 60
+        self.d4x, self.d4y = self.mid_w, self.mid_h + 80
+        self.d5x, self.d5y = self.mid_w, self.mid_h + 100
+        self.cursor_rect.midtop = (self.d1x + self.offset, self.d1y)
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            self.check_input()
+            self.game.display.fill((0, 0, 0))
+            self.game.draw_text('Difficulty', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 30)
+            self.game.draw_text("1", 15, self.d1x, self.d1y)
+            self.game.draw_text("2", 15, self.d2x, self.d2y)
+            self.game.draw_text("3", 15, self.d3x, self.d3y)
+            self.game.draw_text("4", 15, self.d4x, self.d4y)
+            self.game.draw_text("5", 15, self.d5x, self.d5y)
+            self.draw_cursor()
+            self.blit_screen()
+
+    def check_input(self):
+        if self.game.BACK_KEY:
+            self.game.curr_menu = self.game.main_menu
+            self.run_display = False
+        elif self.game.UP_KEY or self.game.DOWN_KEY:
+            if self.state == '1':
+                self.state = '2'
+                self.cursor_rect.midtop = (self.d2x + self.offset, self.d2y)
+            elif self.state == '2':
+                self.state = '3'
+                self.cursor_rect.midtop = (self.d3x + self.offset, self.d3y)
+            elif self.state == '3':
+                self.state = '4'
+                self.cursor_rect.midtop = (self.d4x + self.offset, self.d4y)
+            elif self.state == '4':
+                self.state = '5'
+                self.cursor_rect.midtop = (self.d5x + self.offset, self.d5y)
+            elif self.state == '5':
+                self.state = '1'
+                self.cursor_rect.midtop = (self.d1x + self.offset, self.d1y)
+        elif self.game.START_KEY:
+            if self.state == '1':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.difficulty = 10
+            elif self.state == '2':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.difficulty = 50
+            elif self.state == '3':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.difficulty = 100
+            elif self.state == '4':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.difficulty = 150
+            elif self.state == '5':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.difficulty = 200
+            self.run_display = False
+            pass
+
+
 
 
