@@ -20,7 +20,7 @@ w = 800
 rows = 20
 dis = w // rows
 pg.init()
-sn_running = True
+sn1_running = True
 screen = pg.display.set_mode((w, w))
 all_sprites = pg.sprite.Group()
 clock = pg.time.Clock()
@@ -156,17 +156,7 @@ def draw_grid(w, rows, surface):  # сетка
         pg.draw.line(surface, GREY, (x, 0), (x, w))
         pg.draw.line(surface, GREY, (0, y), (w, y))
 
-def snake_loop1(w, rows, surface):
-    size_btwn = w // rows
 
-    x = 0
-    y = 0
-    for l in range(rows):
-        x = x + size_btwn
-        y = y + size_btwn
-
-        pg.draw.line(surface, GREY, (x, 0), (x, w))
-        pg.draw.line(surface, GREY, (0, y), (w, y))
 
 
 snakes = Snakes()
@@ -180,33 +170,35 @@ for snake in snakes.list:
     for i in range(start_length):
         snake.add_Cube()
 
-while sn_running:
-    pg.display.update()
-    clock.tick(fps)
-    screen.fill(pg.Color('#EFFFA5'))
 
-    for event in pg.event.get():  # изменение направления и приращение попы на пробел
-        if event.type == pg.KEYDOWN:
+def snake_loop():
+    while sn1_running:
+        pg.display.update()
+        clock.tick(fps)
+        screen.fill(pg.Color('#EFFFA5'))
+
+        for event in pg.event.get():  # изменение направления и приращение попы на пробел
+            if event.type == pg.KEYDOWN:
+                for snake in snakes.list:
+                    snake.re_dir(event)
+            if event.type == pg.QUIT:
+                exit()
+        keys = pg.key.get_pressed()
+
+        if keys[pg.K_SPACE]:
             for snake in snakes.list:
-                snake.re_dir(event)
-        if event.type == pg.QUIT:
-            exit()
-    keys = pg.key.get_pressed()
+                snake.add_Cube()
+        for food in bigmak.list:
+            for snake in snakes.list:
+                food.eat(snake)
+        bigmak.draw(screen, dis)
+        # f.draw(screen, dis)  # отрисовка еды
+        # f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
+        # f.eat1(s1.body[len(s1.body) - 1].pos[0], s1.body[len(s1.body) - 1].pos[1])
 
-    if keys[pg.K_SPACE]:
         for snake in snakes.list:
-            snake.add_Cube()
-    for food in bigmak.list:
-        for snake in snakes.list:
-            food.eat(snake)
-    bigmak.draw(screen, dis)
-    # f.draw(screen, dis)  # отрисовка еды
-    # f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
-    # f.eat1(s1.body[len(s1.body) - 1].pos[0], s1.body[len(s1.body) - 1].pos[1])
+            snake.uyebalsya(snake.body[len(snake.body) - 1].pos)
 
-    for snake in snakes.list:
-        snake.uyebalsya(snake.body[len(snake.body) - 1].pos)
-
-    snakes.move()
-    snakes.draw()
-    draw_grid(w, rows, screen)
+        snakes.move()
+        snakes.draw()
+        draw_grid(w, rows, screen)
