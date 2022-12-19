@@ -144,9 +144,19 @@ class Food:
                 screen.fill(pg.Color('#A5FFAB'))
                 snake.add_Cube()
                 print('eated')
+def draw_grid(w, rows, surface):  # сетка
+    size_btwn = w // rows
 
+    x = 0
+    y = 0
+    for l in range(rows):
+        x = x + size_btwn
+        y = y + size_btwn
 
-def snake_loop1(w, rows, surface):  # сетка
+        pg.draw.line(surface, GREY, (x, 0), (x, w))
+        pg.draw.line(surface, GREY, (0, y), (w, y))
+
+def snake_loop1(w, rows, surface):
     size_btwn = w // rows
 
     x = 0
