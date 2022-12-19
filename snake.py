@@ -61,6 +61,11 @@ class Snake:
             i.rect = i.surf.get_rect(topleft=i.pos)
             screen.blit(i.surf, i.rect)
 
+def draw_food(rows, screen, dis):
+    foodx=random.randrange(rows)
+    foody=random.randrange(rows*h/w)
+    pygame.draw.rect(screen, (0, 255, 198), [foodx*40, foody*40, dis, dis])
+
 
 def draw_grid(w, rows, surface):
     size_btwn = w // rows
@@ -89,13 +94,11 @@ def re_dir(events):
 
 s = Snake()
 
-
 while sn_running:
     pygame.display.update()
     clock.tick(fps)
     screen.fill((0, 0, 0))
     draw_grid(w, rows, screen)
-
     s.move()
     s.draw()
 
