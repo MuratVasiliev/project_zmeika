@@ -29,7 +29,6 @@ score = cl.NumVariables()
 def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0,0,0))
     screen.blit(value, [30, 30])
-
 class Cube:
     def __init__(self, pos):
         self.pos = pos
