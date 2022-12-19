@@ -1,3 +1,4 @@
+import pygame as pg
 class NumVariables:
     """Class of numeric variables"""
 
