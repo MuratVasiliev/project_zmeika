@@ -13,7 +13,7 @@ w = 800
 rows = 20
 dis = w // rows
 pygame.init()
-sn_running = True
+sn_running = False
 screen = pygame.display.set_mode((w, w))
 all_sprites = pygame.sprite.Group()
 clock = pygame.time.Clock()
