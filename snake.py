@@ -123,7 +123,7 @@ while sn_running:
     for i in s.body[:-1]: #проверка на самопересечение
         if s.head.pos == i.pos:
             screen.fill(pygame.Color('#FF8A87'))
-            print('fuck')
+            print()
 
-    s.draw() #хуёу
+    s.draw() 
     draw_grid(w, rows, screen)
