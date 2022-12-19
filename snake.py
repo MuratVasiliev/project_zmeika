@@ -144,9 +144,9 @@ while sn_running:
     #    if s.head.pos == event.pos:
 #
     #        screen.blit(game_over_screen, (0,0))
-    #        print('fuck')
-
-    s.draw()  # хуёу
+   #        print('fuck')
+    s.draw()  #
     draw_grid(w, rows, screen)
+
 
 
