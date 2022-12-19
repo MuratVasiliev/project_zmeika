@@ -1,8 +1,9 @@
 import pygame
 import random
 import pygame
-
+import classes as cl
 BLACK = (0, 0, 0)
+dir = [1, 0]
 GREEN = (0, 255, 50)
 RED = (0, 0, 255)
 BLUE = (255, 0, 0)
@@ -20,6 +21,10 @@ clock = pygame.time.Clock()
 fps = 15
 foodx = w // 2
 foody = w // 2
+score = cl.NumVariables()
+def your_score(score):
+    value = score_font.render(f'Your Score: {score.getter()}', True, (0,0,0))
+    screen.blit(value, [100, 100])
 game_over_screen = pygame.image.load('game_over.jpg')
 
 class Cube:
@@ -110,7 +115,7 @@ while sn_running:
     pygame.display.update()
     clock.tick(fps)
     screen.fill(pygame.Color('#EFFFA5'))
-
+    your_score(score)
     for event in pygame.event.get():  # изменение направления и приращение попы на пробел
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and dir != [0, 1]:
