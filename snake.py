@@ -9,7 +9,7 @@ RED = (0, 0, 255)
 BLUE = (255, 0, 0)
 GREY = (100, 100, 100)
 dir = [1, 0]
-w = 800
+w = 600
 # h = 600
 rows = 20
 dis = w // rows
@@ -20,7 +20,7 @@ score_font = pygame.font.SysFont("comicsansms", 35)
 screen = pygame.display.set_mode((w, w))
 all_sprites = pygame.sprite.Group()
 clock = pygame.time.Clock()
-fps = 15
+fps = 10
 foodx = w // 2
 foody = w // 2
 score = cl.NumVariables()
@@ -28,7 +28,7 @@ score = cl.NumVariables()
 
 def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0,0,0))
-    screen.blit(value, [100, 100])
+    screen.blit(value, [30, 30])
 #game_over_screen = pygame.image.load('game_over.jpg')
 
 class Cube:
@@ -86,16 +86,16 @@ class Food:
 
     def eat(self, snakex, snakey):  # если съел
         if snakex == self.x and snakey == self.y:
-            while self.check():
-                self.rand()
             screen.fill(pygame.Color('#A5FFAB'))
             s.add_Cube()
             print('eated')
             score.adder(1)
+            self.rand()
 
     def check(self):
+        # self.rand()
         for cube_number in range(len(s.body)):
-            if self.x == s.body[cube_number].pos[0] and self.y == s.body[cube_number - 1].pos[1]:
+            if self.x == s.body[cube_number].pos[0] and self.y == s.body[cube_number].pos[1]:
                 return True
             else:
                 return False
@@ -116,30 +116,34 @@ def draw_grid(w, rows, surface):  # сетка
 
 s = Snake()  # инициализация анаконды
 f = Food(w)  # яблОчко
-while sn_running:
-    pygame.display.update()
-    clock.tick(fps)
-    screen.fill(pygame.Color('#EFFFA5'))
-    your_score(score)
-    for event in pygame.event.get():  # изменение направления и приращение попы на пробел
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and dir != [0, 1]:
-                dir = [0, -1]
-            if event.key == pygame.K_DOWN and dir != [0, -1]:
-                dir = [0, 1]
-            if event.key == pygame.K_LEFT and dir != [1, 0]:
-                dir = [-1, 0]
-            if event.key == pygame.K_RIGHT and dir != [-1, 0]:
-                dir = [1, 0]
-            if event.key == pygame.K_SPACE:
-                s.add_Cube()
-        if event.type == pygame.QUIT:
-            exit()
+def snake_loop():
+    global dir
+    while sn_running:
+        pygame.display.update()
+        clock.tick(fps)
+        screen.fill(pygame.Color('#EFFFA5'))
+        your_score(score)
+        for event in pygame.event.get():  # изменение направления и приращение попы на пробел
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP and dir != [0, 1]:
+                    dir = [0, -1]
+                if event.key == pygame.K_DOWN and dir != [0, -1]:
+                    dir = [0, 1]
+                if event.key == pygame.K_LEFT and dir != [1, 0]:
+                    dir = [-1, 0]
+                if event.key == pygame.K_RIGHT and dir != [-1, 0]:
+                    dir = [1, 0]
+                if event.key == pygame.K_SPACE:
+                    s.add_Cube()
+            if event.type == pygame.QUIT:
+                exit()
 
-    f.check()
-    f.draw(screen, dis)  # отрисовка еды
-    f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
-    s.move()  # хуюв
+        while f.check():
+            f.rand()
+        s.move()
+        f.draw(screen, dis)  # отрисовка еды
+        f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
+      # хуюв
     #for event in s.body[:-1]:  # проверка на самопересечение
     #    if s.head.pos == event.pos:
 #
