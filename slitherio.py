@@ -1,6 +1,10 @@
-import pygame
 import random
-import pygame
+import pygame as pg
+import classes as cl
+import constants as const
+import os
+
+import menu
 
 start_length = 1
 start_food = 5
@@ -15,11 +19,11 @@ w = 800
 # h = 600
 rows = 20
 dis = w // rows
-pygame.init()
+pg.init()
 sn_running = True
-screen = pygame.display.set_mode((w, w))
-all_sprites = pygame.sprite.Group()
-clock = pygame.time.Clock()
+screen = pg.display.set_mode((w, w))
+all_sprites = pg.sprite.Group()
+clock = pg.time.Clock()
 fps = 10
 foodx = w // 2
 foody = w // 2
@@ -41,13 +45,13 @@ class Snakes:
         for k in self.list:
             for i in k.body:
                 if i != k.body[len(k.body) - 1]:  # кроме головы
-                    i.surf = pygame.Surface((dis, dis))
+                    i.surf = pg.Surface((dis, dis))
                     i.surf.fill(k.color)
                     i.rect = i.surf.get_rect(topleft=i.pos)
                     screen.blit(i.surf, i.pos)
                 else:  # голова
-                    i.surf = pygame.Surface((dis, dis))
-                    i.surf.fill(pygame.Color('#FF0000'))
+                    i.surf = pg.Surface((dis, dis))
+                    i.surf.fill(pg.Color('#FF0000'))
                     i.rect = i.surf.get_rect(topleft=i.pos)
                     screen.blit(i.surf, i.pos)
 
@@ -79,23 +83,23 @@ class Snake:
 
     def re_dir(self, event):
         if self == snakes.list[0]:
-            if event.key == pygame.K_UP and self.dir != [0, 1]:
+            if event.key == pg.K_UP and self.dir != [0, 1]:
                 self.dir = [0, -1]
-            if event.key == pygame.K_DOWN and self.dir != [0, -1]:
+            if event.key == pg.K_DOWN and self.dir != [0, -1]:
                 self.dir = [0, 1]
-            if event.key == pygame.K_LEFT and self.dir != [1, 0]:
+            if event.key == pg.K_LEFT and self.dir != [1, 0]:
                 self.dir = [-1, 0]
-            if event.key == pygame.K_RIGHT and self.dir != [-1, 0]:
+            if event.key == pg.K_RIGHT and self.dir != [-1, 0]:
                 self.dir = [1, 0]
             print('redir0')
         if self == snakes.list[1]:
-            if event.key == pygame.K_w and self.dir != [0, 1]:
+            if event.key == pg.K_w and self.dir != [0, 1]:
                 self.dir = [0, -1]
-            if event.key == pygame.K_s and self.dir != [0, -1]:
+            if event.key == pg.K_s and self.dir != [0, -1]:
                 self.dir = [0, 1]
-            if event.key == pygame.K_a and self.dir != [1, 0]:
+            if event.key == pg.K_a and self.dir != [1, 0]:
                 self.dir = [-1, 0]
-            if event.key == pygame.K_d and self.dir != [-1, 0]:
+            if event.key == pg.K_d and self.dir != [-1, 0]:
                 self.dir = [1, 0]
             print('redir0')
 
@@ -110,6 +114,7 @@ class Snake:
                     self.dir = [0, 0]
                     print('uyebalsya')
 
+
 class Bigmak:
     def __init__(self):
         self.list = [Food(w)]
@@ -117,9 +122,10 @@ class Bigmak:
     def add_Food(self):
         self.list.append(Food(w))
 
-    def draw(self,screen, dis):
+    def draw(self, screen, dis):
         for food in self.list:
-            pygame.draw.rect(screen, pygame.Color('#3AD044'), [food.x, food.y, dis, dis])
+            pg.draw.rect(screen, pg.Color('#3AD044'), [food.x, food.y, dis, dis])
+
 
 class Food:
     def __init__(self, w):
@@ -133,12 +139,11 @@ class Food:
 
     def eat(self, snake):  # если съел
         for snake in snakes.list:
-            if snake.body[len(snake.body) -1].pos[0] == self.x and snake.body[len(snake.body) -1].pos[1] == self.y:
+            if snake.body[len(snake.body) - 1].pos[0] == self.x and snake.body[len(snake.body) - 1].pos[1] == self.y:
                 self.rand()
-                screen.fill(pygame.Color('#A5FFAB'))
+                screen.fill(pg.Color('#A5FFAB'))
                 snake.add_Cube()
                 print('eated')
-
 
 
 def draw_grid(w, rows, surface):  # сетка
@@ -150,8 +155,9 @@ def draw_grid(w, rows, surface):  # сетка
         x = x + size_btwn
         y = y + size_btwn
 
-        pygame.draw.line(surface, GREY, (x, 0), (x, w))
-        pygame.draw.line(surface, GREY, (0, y), (w, y))
+        pg.draw.line(surface, GREY, (x, 0), (x, w))
+        pg.draw.line(surface, GREY, (0, y), (w, y))
+
 
 snakes = Snakes()
 snakes.add_snake([0, -1], [0, rows * dis], RED)
@@ -165,31 +171,31 @@ for snake in snakes.list:
         snake.add_Cube()
 
 while sn_running:
-    pygame.display.update()
+    pg.display.update()
     clock.tick(fps)
-    screen.fill(pygame.Color('#EFFFA5'))
+    screen.fill(pg.Color('#EFFFA5'))
 
-    for event in pygame.event.get():  # изменение направления и приращение попы на пробел
-        if event.type == pygame.KEYDOWN:
+    for event in pg.event.get():  # изменение направления и приращение попы на пробел
+        if event.type == pg.KEYDOWN:
             for snake in snakes.list:
                 snake.re_dir(event)
-        if event.type == pygame.QUIT:
+        if event.type == pg.QUIT:
             exit()
-    keys = pygame.key.get_pressed()
+    keys = pg.key.get_pressed()
 
-    if keys[pygame.K_SPACE]:
+    if keys[pg.K_SPACE]:
         for snake in snakes.list:
             snake.add_Cube()
     for food in bigmak.list:
         for snake in snakes.list:
             food.eat(snake)
-    bigmak.draw(screen,dis)
+    bigmak.draw(screen, dis)
     # f.draw(screen, dis)  # отрисовка еды
     # f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
     # f.eat1(s1.body[len(s1.body) - 1].pos[0], s1.body[len(s1.body) - 1].pos[1])
 
     for snake in snakes.list:
-        snake.uyebalsya(snake.body[len(snake.body)-1].pos)
+        snake.uyebalsya(snake.body[len(snake.body) - 1].pos)
 
     snakes.move()
     snakes.draw()
