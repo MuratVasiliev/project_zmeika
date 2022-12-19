@@ -3,7 +3,7 @@ import classes as cl
 import snake as sn
 import constants as const
 
-width, height = const.width, const.width       # Screen's width and height
+width, height = const.WIDTH, const.WIDTH       # Screen's width and height
 background_color = (0, 0, 0)
 pg.init()
 pg.display.init()

@@ -10,7 +10,7 @@ direction_y = cl.NumVariables(0)
 
 pg.init()
 sn_running = cl.BullVariables(False)
-screen = pg.display.set_mode((const.width, const.width))
+screen = pg.display.set_mode((const.WIDTH, const.WIDTH))
 all_sprites = pg.sprite.Group()
 clock = pg.time.Clock()
 
@@ -30,27 +30,27 @@ class Snake:
     def move(self):
         self.head = self.body[len(self.body) - 1]
         self.body.append(
-            cl.Cube([self.head.pos[0] + direction_x.getter() * const.dis, self.head.pos[1] + direction_y.getter() * const.dis]))
+            cl.Cube([self.head.pos[0] + direction_x.getter() * const.DIS, self.head.pos[1] + direction_y.getter() * const.DIS]))
         self.head = self.body[len(self.body) - 1]
         self.body.pop(0)
-        if self.head.pos[0] >= const.width:
+        if self.head.pos[0] >= const.WIDTH:
             self.head.pos[0] = 0
-        if self.head.pos[0] <= -const.dis:
-            self.head.pos[0] = const.width - const.dis
-        if self.head.pos[1] >= const.width:
+        if self.head.pos[0] <= -const.DIS:
+            self.head.pos[0] = const.WIDTH - const.DIS
+        if self.head.pos[1] >= const.WIDTH:
             self.head.pos[1] = 0
-        if self.head.pos[1] <= -const.dis:
-            self.head.pos[1] = const.width - const.dis
+        if self.head.pos[1] <= -const.DIS:
+            self.head.pos[1] = const.WIDTH - const.DIS
 
     def draw(self):
         for i in self.body:
             if i != self.body[len(self.body) - 1]:  # кроме головы
-                i.surf = pg.Surface((const.dis, const.dis))
+                i.surf = pg.Surface((const.DIS, const.DIS))
                 i.surf.fill(pg.Color('#D03E3A'))
                 i.rect = i.surf.get_rect(topleft=i.pos)
                 screen.blit(i.surf, i.pos)
             else:  # голова
-                i.surf = pg.Surface((const.dis, const.dis))
+                i.surf = pg.Surface((const.DIS, const.DIS))
                 i.surf.fill(pg.Color('#FF0000'))
                 i.rect = i.surf.get_rect(topleft=i.pos)
                 screen.blit(i.surf, i.pos)
@@ -58,12 +58,12 @@ class Snake:
 
 class Food:
     def __init__(self):
-        self.x = random.randrange(1, const.rows) * const.dis
-        self.y = random.randrange(1, const.rows) * const.dis
+        self.x = random.randrange(1, const.ROWS) * const.DIS
+        self.y = random.randrange(1, const.ROWS) * const.DIS
 
     def rand(self):  # рандомайзер еды
-        self.x = random.randrange(1, const.rows) * const.dis
-        self.y = random.randrange(1, const.rows) * const.dis
+        self.x = random.randrange(1, const.ROWS) * const.DIS
+        self.y = random.randrange(1, const.ROWS) * const.DIS
 
     def draw(self, screen, dis):  # отрисовка еды
         pg.draw.rect(screen, pg.Color('#3AD044'), [self.x, self.y, dis, dis])
@@ -113,7 +113,7 @@ food = Food()  # яблОчко
 
 def snake_loop():
     pg.display.update()
-    clock.tick(const.fps)
+    clock.tick(const.FPS)
     screen.fill(pg.Color('#EFFFA5'))
     your_score(score)
     for event in pg.event.get():  # изменение направления и приращение попы на пробел
@@ -136,7 +136,7 @@ def snake_loop():
             exit()
 
     food.check()
-    food.draw(screen, const.dis)  # отрисовка еды
+    food.draw(screen, const.DIS)  # отрисовка еды
     food.eat(snake.body[len(snake.body) - 1].pos[0], snake.body[len(snake.body) - 1].pos[1])  # проверка на съедение
     snake.move()  # хуюв
     for event in snake.body[:-1]:  # проверка на самопересечение
@@ -146,4 +146,4 @@ def snake_loop():
             #print('fuck')
 
     snake.draw()  # хуёу
-    draw_grid(const.width, const.rows, screen)
+    draw_grid(const.WIDTH, const.ROWS, screen)
