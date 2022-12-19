@@ -10,7 +10,7 @@ GREY = (100, 100, 100)
 dir = [1, 0]
 w = 600
 # h = 600
-rows = 10
+rows = 20
 dis = w // rows
 pygame.init()
 sn_running = True
