@@ -225,5 +225,32 @@ class OptionsMenu(Menu):
             pass
 
 
+class CreditsMenu(Menu):
+    """Аналогично с предыдущими current menu делаем CreditsMenu"""
+    def __init__(self, game):
+        Menu.__init__(self, game)
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            if self.game.START_KEY or self.game.BACK_KEY:
+                self.game.curr_menu = self.game.main_menu
+                self.run_display = False
+            self.game.display.fill(self.game.BLACK)
+            self.game.draw_text('Credits', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text('Made in MIPT, Б02-213 Group', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 10)
+            self.game.draw_text('Muratov Vasiliy', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 25)
+            self.game.draw_text('Pak Boris', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 40)
+            self.game.draw_text('Steksov Ivan', 15, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 + 55)
+            self.blit_screen()
+
+
+
 
 
