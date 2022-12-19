@@ -24,7 +24,6 @@ class Menu:
 
 class MainMenu(Menu):
     def __init__(self, game):
-        """Пишем положение курсора на разных позициях"""
         Menu.__init__(self, game)
         self.state = "Start"
         self.startx, self.starty = self.mid_w, self.mid_h + 30
@@ -34,22 +33,22 @@ class MainMenu(Menu):
         self.scorex, self.scorey = self.mid_w, self.mid_h + 110
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
 
-        def display_menu(self):
-            """Прописываем пункты меню и заливаем его черным цветом"""
-            self.run_display = True
-            while self.run_display:
-                self.game.check_events()
-                self.check_input()
-                self.game.display.fill(self.game.BLACK)
-                self.game.draw_text('Snake', 20, self.game.DISPLAY_W / 2,
-                                    self.game.DISPLAY_H / 2 - 20)
-                self.game.draw_text("Start Game", 20, self.startx, self.starty)
-                self.game.draw_text("Level", 20, self.levelx, self.levely)
-                self.game.draw_text("Options", 20, self.optionsx, self.optionsy)
-                self.game.draw_text("Credits", 20, self.creditsx, self.creditsy)
-                self.game.draw_text("Score", 20, self.scorex, self.scorey)
-                self.draw_cursor()
-                self.blit_screen()
+    def display_menu(self):
+        """Прописываем пункты меню и заливаем его черным цветом"""
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            self.check_input()
+            self.game.display.fill(self.game.BLACK)
+            self.game.draw_text('Snake', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text("Start Game", 20, self.startx, self.starty)
+            self.game.draw_text("Level", 20, self.levelx, self.levely)
+            self.game.draw_text("Options", 20, self.optionsx, self.optionsy)
+            self.game.draw_text("Credits", 20, self.creditsx, self.creditsy)
+            self.game.draw_text("Score", 20, self.scorex, self.scorey)
+            self.draw_cursor()
+            self.blit_screen()
 
     def move_cursor(self):
         """Прописываем движение курсора при нажатии клавиш"""
@@ -138,8 +137,7 @@ class LevelMenu(Menu):
             self.game.draw_text("Level 3", 15, self.l3x, self.l3y)
             self.draw_cursor()
             self.blit_screen()
-   def check_input(self):
-       """Прописываем движение курсора при нажатии клавиш"""
+    def check_input(self):
         if self.game.BACK_KEY:
             self.game.curr_menu = self.game.main_menu
             self.run_display = False
@@ -189,8 +187,8 @@ class OptionsMenu(Menu):
         self.controlsx, self.controlsy = self.mid_w, self.mid_h + 40
         self.cursor_rect.midtop = (self.Difx + self.offset, self.Dify)
 
-   def display_menu(self):
-       """"Прописываем меню при нажатии OptionsMenu"""
+    def display_menu(self):
+       
         self.run_display = True
         while self.run_display:
             self.game.check_events()
