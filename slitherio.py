@@ -146,7 +146,7 @@ class Food:
                 print('eated')
 
 
-def draw_grid(w, rows, surface):  # сетка
+def snake_loop1(w, rows, surface):  # сетка
     size_btwn = w // rows
 
     x = 0
