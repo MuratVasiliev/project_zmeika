@@ -92,7 +92,7 @@ def your_score(score):
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
-    screen.blit(mesg, [const.WIDTH / 3, const.WIDTH/ 2])
+    screen.blit(mesg, [const.WIDTH / 3, const.WIDTH/ 3])
 
 
 
