@@ -114,9 +114,9 @@ class MainMenu(Menu):
 
 
 class LevelMenu(Menu):
-    """Прописываем положение курсора в Level Menu"""
 
     def __init__(self, game):
+        """Прописываем положение курсора в Level Menu"""
         Menu.__init__(self, game)
         self.state = 'Level 1'
         self.l1x, self.l1y = self.mid_w, self.mid_h + 20
@@ -138,3 +138,92 @@ class LevelMenu(Menu):
             self.game.draw_text("Level 3", 15, self.l3x, self.l3y)
             self.draw_cursor()
             self.blit_screen()
+   def check_input(self):
+       """Прописываем движение курсора при нажатии клавиш"""
+        if self.game.BACK_KEY:
+            self.game.curr_menu = self.game.main_menu
+            self.run_display = False
+        elif self.game.UP_KEY:
+            if self.state == 'Level 1':
+                self.state = 'Level 3'
+                self.cursor_rect.midtop = (
+                    self.l3x + self.offset, self.l3y)
+            elif self.state == 'Level 3':
+                self.state = 'Level 2'
+                self.cursor_rect.midtop = (self.l2x + self.offset, self.l2y)
+            elif self.state == 'Level 2':
+                self.state = 'Level 1'
+                self.cursor_rect.midtop = (self.l1x + self.offset, self.l1y)
+        elif self.game.DOWN_KEY:
+            if self.state == 'Level 1':
+                self.state = 'Level 2'
+                self.cursor_rect.midtop = (
+                    self.l2x + self.offset, self.l2y)
+            elif self.state == 'Level 2':
+                self.state = 'Level 3'
+                self.cursor_rect.midtop = (self.l3x + self.offset, self.l3y)
+            elif self.state == 'Level 3':
+                self.state = 'Level 1'
+                self.cursor_rect.midtop = (self.l1x + self.offset, self.l1y)
+        elif self.game.START_KEY:
+            if self.state == 'Level 1':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.lev=1
+            elif self.state == 'Level 2':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.lev=2
+            elif self.state == 'Level 3':
+                self.game.curr_menu = self.game.main_menu
+                Varriables.lev=3
+            self.run_display = False
+            pass
+
+
+
+class OptionsMenu(Menu):
+    def __init__(self, game):
+        """Прописываем положение курсора в OptionsMenu"""
+        Menu.__init__(self, game)
+        self.state = 'Difficulty'
+        self.Difx, self.Dify = self.mid_w, self.mid_h + 20
+        self.controlsx, self.controlsy = self.mid_w, self.mid_h + 40
+        self.cursor_rect.midtop = (self.Difx + self.offset, self.Dify)
+
+   def display_menu(self):
+       """"Прописываем меню при нажатии OptionsMenu"""
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            self.check_input()
+            self.game.display.fill((0, 0, 0))
+            self.game.draw_text('Options', 20, self.game.DISPLAY_W / 2,
+                                self.game.DISPLAY_H / 2 - 30)
+            self.game.draw_text("Difficulty", 15, self.Difx, self.Dify)
+            self.game.draw_text("Controls", 15, self.controlsx, self.controlsy)
+            self.draw_cursor()
+            self.blit_screen()
+
+    def check_input(self):
+        """Прописываем движение курсора при нажатии клавиш"""
+        if self.game.BACK_KEY:
+            self.game.curr_menu = self.game.main_menu
+            self.run_display = False
+        elif self.game.UP_KEY or self.game.DOWN_KEY:
+            if self.state == 'Difficulty':
+                self.state = 'Controls'
+                self.cursor_rect.midtop = (
+                    self.controlsx + self.offset, self.controlsy)
+            elif self.state == 'Controls':
+                self.state = 'Difficulty'
+                self.cursor_rect.midtop = (self.Difx + self.offset, self.Dify)
+        elif self.game.START_KEY:
+            if self.state == 'Controls':
+                self.game.curr_menu = self.game.controls
+            elif self.state == 'Difficulty':
+                self.game.curr_menu = self.game.difficulty
+            self.run_display = False
+            pass
+
+
+
+
