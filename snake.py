@@ -8,7 +8,8 @@ GREEN = (0, 255, 50)
 RED = (0, 0, 255)
 BLUE = (255, 0, 0)
 GREY = (100, 100, 100)
-dir = [1, 0]
+direction_x = cl.NumVariables(1)
+direction_y = cl.NumVariables(0)
 width = 600
 # h = 600
 rows = 20
@@ -24,11 +25,14 @@ foody = width // 2
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("Elektra", 35)
 
-
 score = cl.NumVariables()
+
+
 def your_score(score):
-    value = score_font.render(f'Your Score: {score.getter()}', True, (0,0,0))
+    value = score_font.render(f'Your Score: {score.getter()}', True, (0, 0, 0))
     screen.blit(value, [30, 30])
+
+
 class Cube:
     def __init__(self, pos):
         self.pos = pos
@@ -44,7 +48,8 @@ class Snake:
 
     def move(self):
         self.head = self.body[len(self.body) - 1]
-        self.body.append(Cube([self.head.pos[0] + dir[0] * dis, self.head.pos[1] + dir[1] * dis]))
+        self.body.append(
+            Cube([self.head.pos[0] + direction_x.getter() * dis, self.head.pos[1] + direction_y.getter() * dis]))
         self.head = self.body[len(self.body) - 1]
         self.body.pop(0)
         if self.head.pos[0] >= width:
@@ -123,14 +128,18 @@ def snake_loop():
     your_score(score)
     for event in pygame.event.get():  # изменение направления и приращение попы на пробел
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and dir != [0, 1]:
-                dir = [0, -1]
-            if event.key == pygame.K_DOWN and dir != [0, -1]:
-                dir = [0, 1]
-            if event.key == pygame.K_LEFT and dir != [1, 0]:
-                dir = [-1, 0]
-            if event.key == pygame.K_RIGHT and dir != [-1, 0]:
-                dir = [1, 0]
+            if event.key == pygame.K_UP and direction_y.getter() != 1:
+                direction_x.setter(0)
+                direction_y.setter(-1)
+            if event.key == pygame.K_DOWN and direction_y.getter() != -1:
+                direction_x.setter(0)
+                direction_y.setter(1)
+            if event.key == pygame.K_LEFT and direction_x.getter() != 1:
+                direction_x.setter(-1)
+                direction_y.setter(0)
+            if event.key == pygame.K_RIGHT and direction_x.getter() != -1:
+                direction_x.setter(1)
+                direction_y.setter(0)
             if event.key == pygame.K_SPACE:
                 s.add_Cube()
         if event.type == pygame.QUIT:
@@ -142,7 +151,6 @@ def snake_loop():
     s.move()  # хуюв
     for event in s.body[:-1]:  # проверка на самопересечение
         if s.head.pos == event.pos:
-
             # screen.blit(game_over_screen, (0,0))
             print('fuck')
 
