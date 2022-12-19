@@ -2,6 +2,11 @@ import pygame
 import random
 import pygame
 
+BLACK=(0,0,0)
+GREEN=(0, 255, 50)
+RED=(0,0, 255)
+BLUE=(255, 0, 0)
+GREY=(100, 100, 100)
 dir = [1, 0]
 w = 800
 h = 600
@@ -29,7 +34,7 @@ class Cube:
     def __init__(self, pos):
         self.pos = pos
         self.surf = pygame.Surface((dis, dis))
-        self.surf.fill((0, 0, 255))
+        self.surf.fill(BLUE)
         self.rect = self.surf.get_rect(topleft=pos)
         self.pos = [self.rect.left, self.rect.top]
 
@@ -64,7 +69,7 @@ class Snake:
 def draw_food(rows, screen, dis):
     foodx=random.randrange(rows)
     foody=random.randrange(rows*h/w)
-    pygame.draw.rect(screen, (0, 255, 50), [foodx*40, foody*40, dis, dis])
+    pygame.draw.rect(screen, GREEN, [foodx*40, foody*40, dis, dis])
 
 
 def draw_grid(w, rows, surface):
@@ -76,8 +81,8 @@ def draw_grid(w, rows, surface):
         x = x + size_btwn
         y = y + size_btwn
 
-        pygame.draw.line(surface, (100, 100, 100), (x, 0), (x, w))
-        pygame.draw.line(surface, (100, 100, 100), (0, y), (w, y))
+        pygame.draw.line(surface, GREY, (x, 0), (x, w))
+        pygame.draw.line(surface, GREY, (0, y), (w, y))
 
 
 def re_dir(events):
@@ -97,7 +102,7 @@ s = Snake()
 while sn_running:
     pygame.display.update()
     clock.tick(fps)
-    screen.fill((0, 0, 0))
+    screen.fill(BLACK)
     draw_grid(w, rows, screen)
     s.move()
     s.draw()
