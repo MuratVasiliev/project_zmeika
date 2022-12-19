@@ -4,9 +4,11 @@ import pygame
 
 BLACK=(0,0,0)
 GREEN=(0, 255, 50)
-RED=(0,0, 255)
-BLUE=(255, 0, 0)
+RED=(200,30, 30)
+BLUE=(0, 0, 255)
 GREY=(100, 100, 100)
+WHITE= (255, 255, 255)
+q=1
 dir = [1, 0]
 w = 800
 h = 600
@@ -71,6 +73,17 @@ def draw_food(rows, screen, dis):
     foody=random.randrange(rows*h/w)
     pygame.draw.rect(screen, GREEN, [foodx*40, foody*40, dis, dis])
 
+#def draw_gameover(screen, w, h):
+#    screen.fill(BLACK)
+#    font = pygame.font.SysFont('umeminchos3', 50)
+#    img = font.render('Потрачено', True, WHITE)
+#    img1 = font.render('Счет:' , True, WHITE)
+#    screen.blit(img, (w/2-100, h/2-50))
+#    screen.blit(img1, (w/2-100, h/2))
+
+
+
+
 
 def draw_grid(w, rows, surface):
     size_btwn = w // rows
@@ -106,7 +119,7 @@ while sn_running:
     draw_grid(w, rows, screen)
     s.move()
     s.draw()
-
+    draw_gameover(screen, w, h)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
