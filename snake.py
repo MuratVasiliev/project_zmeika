@@ -120,7 +120,7 @@ while sn_running:
     draw_grid(w, rows, screen)
     s.move()
     s.draw()
-    draw_gameover(screen, w, h)
+#    draw_gameover(screen, w, h)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
