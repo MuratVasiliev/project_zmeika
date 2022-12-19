@@ -9,6 +9,8 @@ while running.getter():
         menu.menu(running)
     elif menu.levelmenu_running.getter():
         menu.levelmenu(running)
+    elif menu.optionsmenu_running.getter():
+        menu.optionsmenu(running)
     if sn.sn_running.getter():
         sn.snake_loop()
     if sl.sn1_running.getter():

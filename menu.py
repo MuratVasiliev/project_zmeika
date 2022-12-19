@@ -16,19 +16,25 @@ pg.display.flip()
 
 menu_running = cl.BullVariables(True)
 levelmenu_running=cl.BullVariables(False)
+optionsmenu_running=cl.BullVariables(False)
+difficultmenu_running=cl.BullVariables(False)
+Helpmenu_running=cl.BullVariables(False)
+Creditsmenu_running=cl.BullVariables(False)
 
 snake_text = cl.Button (const.TEXTX, const.WIDTH/2-225, const.TEXTH, const.TEXTH,'Snake', const.RED)
 play_button = cl.Button(const.TEXTX, const.WIDTH/2-150, const.TEXTH, const.TEXTH,'Play', const.WHITE)
 regime_button = cl.Button(const.TEXTX, const.WIDTH/2-100, const.TEXTH, const.TEXTH,'Regime', const.WHITE)
 options_button = cl.Button (const.TEXTX, const.WIDTH/2-50, const.TEXTH, const.TEXTH, 'Options', const.WHITE)
-help_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Help', const.WHITE)
-score_button = cl.Button(const.TEXTX, const.WIDTH/2+50 , const.TEXTH , const.TEXTH, 'Score', const.WHITE)
-quit_button = cl.Button(const.TEXTX, const.WIDTH/2+100 , const.TEXTH , const.TEXTH, 'Quit', const.WHITE)
+score_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Score', const.WHITE)
+quit_button = cl.Button(const.TEXTX, const.WIDTH/2+50 , const.TEXTH , const.TEXTH, 'Quit', const.WHITE)
 
 Torus_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Torus', const.WHITE)
 Wall_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Wall', const.WHITE)
 PVP_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'PVP', const.WHITE)
 
+Difficult_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Difficult', const.WHITE)
+Help_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Help', const.WHITE)
+Credits_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Credits', const.WHITE)
 
 def menu(running):
     screen.fill(const.CYAN)
@@ -38,7 +44,6 @@ def menu(running):
     quit_button.write_text_on_button(screen)
     regime_button.write_text_on_button(screen)
     options_button.write_text_on_button(screen)
-    help_button.write_text_on_button(screen)
     score_button.write_text_on_button(screen)
     pg.display.update()
     for event in pg.event.get():
@@ -62,9 +67,9 @@ def menu(running):
             if regime_button.is_click(event):
                 menu_running.setter(False)
                 levelmenu_running.setter(True)
-            if help_button.is_click(event):
+            if options_button.is_click(event):
                 menu_running.setter(False)
-                #helpmenu_running.setter(True)
+                optionsmenu_running.setter(True)
 
 
 def levelmenu(running):
@@ -97,8 +102,34 @@ def levelmenu(running):
                 levelmenu_running.setter(False)
                 menu_running.setter(True)
 
-def helpmenu(running):
+def optionsmenu(running):
     screen.fill(const.CYAN)
+    Difficult_button.write_text_on_button(screen)
+    Help_button.write_text_on_button(screen)
+    Credits_button.write_text_on_button(screen)
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            optionsmenu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.MOUSEBUTTONDOWN:
+            if Difficult_button.is_click(event):
+                optionsmenu_running.setter(False)
+                difficultmenu_running.setter(True)
+         if event.type == pg.MOUSEBUTTONDOWN:
+            if Help_button.is_click(event):
+                optionsmenu_running.setter(False)
+                Helpmenu_running.setter(True)
+         if event.type == pg.MOUSEBUTTONDOWN:
+            if Credits_button.is_click(event):
+                optionsmenu_running.setter(False)
+                Creditsmenu_running.setter(True)
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_BACKSPACE:
+                optionsmenu_running.setter(False)
+                menu_running.setter(True)
+    
+
 
 
 
