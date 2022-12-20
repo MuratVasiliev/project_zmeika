@@ -2,6 +2,7 @@ import menu
 import snake as sn
 import classes as cl
 import slitherio as sl
+import labirint as lb
 running = cl.BullVariables(True)
 
 while running.getter():
@@ -29,4 +30,7 @@ while running.getter():
         sn.snake_loop()
     if sl.sn1_running.getter():
         sl.snake_loop1()
+    if lb.sn2_running.getter():
+        lb.snake_loop2()
+
     #if sl.sn1_running.getter():

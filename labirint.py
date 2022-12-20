@@ -10,7 +10,7 @@ direction_x = cl.NumVariables(1)
 direction_y = cl.NumVariables(0)
 
 pg.init()
-sn_running = cl.BullVariables(False)
+sn2_running = cl.BullVariables(False)
 screen = pg.display.set_mode((const.WIDTH, const.WIDTH))
 all_sprites = pg.sprite.Group()
 clock = pg.time.Clock()
@@ -80,7 +80,7 @@ class Food:
             if self.x == snake.body[cube_number].pos[0] and self.y == snake.body[cube_number].pos[1]:
                 return True
             else:
-                self.rand()
+                self.rand
 
 
 def your_score(score):
@@ -105,7 +105,7 @@ snake = Snake()  # инициализация анаконды
 food = Food()  # яблОчко
 
 
-def snake_loop():
+def snake_loop2():
     pg.display.update()
     clock.tick(const.FPS)
     screen.fill(pg.Color('#EFFFA5'))
