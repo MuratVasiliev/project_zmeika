@@ -36,6 +36,7 @@ class Cube:
 
 class Snakes:
     def __init__(self):
+
         self.list = [Snake([0, 1], [0, 0], const.BLUE)]
 
     def add_snake(self, dir, pos, color):
@@ -194,9 +195,8 @@ def snake_loop1():
     # f.eat(s.body[len(s.body) - 1].pos[0], s.body[len(s.body) - 1].pos[1])  # проверка на съедение
     # f.eat1(s1.body[len(s1.body) - 1].pos[0], s1.body[len(s1.body) - 1].pos[1])
 
-    for snake in snakes.list:
-        snake.uyebalsya(snake.body[len(snake.body) - 1].pos)
-
     snakes.move()
+
+
     snakes.draw()
     draw_grid(w, rows, screen)

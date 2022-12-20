@@ -83,7 +83,7 @@ class Food:
             if self.x == snake.body[cube_number].pos[0] and self.y == snake.body[cube_number].pos[1]:
                 return True
             else:
-                self.rand
+                self.rand()
 
 def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0, 0, 0))
