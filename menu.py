@@ -5,7 +5,6 @@ import constants as const
 import Varriables 
 import slitherio as sl
 
-phon = pg.image.load('Abubs.jpg')
 width, height = const.WIDTH, const.WIDTH       # Screen's width and height
 background_color = const.CYAN
 pg.init()
