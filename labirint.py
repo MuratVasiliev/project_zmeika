@@ -20,6 +20,7 @@ score_font = pg.font.SysFont("Elektra", 35)
 
 score = cl.NumVariables()
 
+
 class Snake:
     def __init__(self):
         self.body = []
@@ -31,17 +32,13 @@ class Snake:
     def move(self):
         self.head = self.body[len(self.body) - 1]
         self.body.append(
-            cl.Cube([self.head.pos[0] + direction_x.getter() * const.DIS, self.head.pos[1] + direction_y.getter() * const.DIS]))
+            cl.Cube([self.head.pos[0] + direction_x.getter() * const.DIS,
+                     self.head.pos[1] + direction_y.getter() * const.DIS]))
         self.head = self.body[len(self.body) - 1]
         self.body.pop(0)
-        if self.head.pos[0] >= const.WIDTH:
-            self.head.pos[0] = 0
-        if self.head.pos[0] <= -const.DIS:
-            self.head.pos[0] = const.WIDTH - const.DIS
-        if self.head.pos[1] >= const.WIDTH:
-            self.head.pos[1] = 0
-        if self.head.pos[1] <= -const.DIS:
-            self.head.pos[1] = const.WIDTH - const.DIS
+        if self.head.pos[0] >= const.WIDTH or self.head.pos[0] <= -const.DIS or self.head.pos[1] >= const.WIDTH or self.head.pos[1] <= -const.DIS:
+            sn_running.setter(False)
+            menu.menu_running.setter(True)
 
     def draw(self):
         for i in self.body:
@@ -85,13 +82,10 @@ class Food:
             else:
                 self.rand()
 
+
 def your_score(score):
     value = score_font.render(f'Your Score: {score.getter()}', True, (0, 0, 0))
     screen.blit(value, [30, 30])
-
-
-
-
 
 
 def draw_grid(width, rows, surface):  # сетка
@@ -148,7 +142,7 @@ def snake_loop():
             sn_running.setter(False)
             menu.menu_running.setter(True)
 
-            #message("Вы проиграли! Нажмите Q для выхода или C для повторной игры", red)
+            # message("Вы проиграли! Нажмите Q для выхода или C для повторной игры", red)
             print('fuck')
 
     snake.draw()  # хуёу

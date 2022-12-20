@@ -2,17 +2,9 @@ import random
 import pygame as pg
 import classes as cl
 import constants as const
-import os
-
-import menu
 
 start_length = 1
 start_food = 5
-# BLACK = (0, 0, 0)
-# GREEN = (0, 255, 50)
-# RED = (0, 0, 255)
-# BLUE = (255, 0, 0)
-# GREY = (100, 100, 100)
 dir = [0, 0]
 dir1 = [0, 0]
 w = 600
@@ -57,7 +49,7 @@ class Snakes:
                     screen.blit(i.surf, i.pos)
 
     def move(self):
-        print('move1')
+
         for k in self.list:
             k.head = k.body[len(k.body) - 1]
             k.body.append(Cube([k.head.pos[0] + k.dir[0] * dis, k.head.pos[1] + k.dir[1] * dis]))
@@ -71,7 +63,7 @@ class Snakes:
                 k.head.pos[1] = 0
             if k.head.pos[1] <= -dis:
                 k.head.pos[1] = w - dis
-            print('move2')
+
 
 
 class Snake:
@@ -102,7 +94,7 @@ class Snake:
                 self.dir = [-1, 0]
             if event.key == pg.K_d and self.dir != [-1, 0]:
                 self.dir = [1, 0]
-            print('redir0')
+
 
     def add_Cube(self):
         self.body.insert(0, Cube(self.body[0].pos))
@@ -111,9 +103,8 @@ class Snake:
         for snake in snakes.list:
             for snake_body in snake.body[:-2]:
                 if head_pos[0] == snake_body.pos[0] and head_pos[1] == snake_body.pos[1]:
-                    # snakes.add_snake([random.randint(0,w),random.randint(0,w)],[0,0],snake.color)
                     self.dir = [0, 0]
-                    print('uyebalsya')
+
 
 
 class Bigmak:

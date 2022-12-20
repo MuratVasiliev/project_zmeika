@@ -94,7 +94,6 @@ class Food:
             screen.blit(feed, (snake.head.pos[0] - const.DIS / 2, snake.head.pos[1] - const.DIS / 2))
             score.adder(1)
 
-
     def check(self):
         for cube_number in range(len(snake.body)):
             if self.x == snake.body[cube_number].pos[0] and self.y == snake.body[cube_number].pos[1]:
@@ -153,13 +152,9 @@ def snake_loop():
         if event.type == pg.QUIT:
             exit()
 
-    food.check()
-      # отрисовка еды
-    snake.move()
+    food.check()  # отрисовка еды
+    snake.move()  # движение
     food.draw(screen, const.DIS)  # проверка на съедение
-
-
-      # хуюв
 
     for event in snake.body[:-2]:  # проверка на самопересечение
         if snake.head.pos == event.pos:
@@ -181,10 +176,8 @@ def snake_loop():
                             final.changer()
 
             print('fuck')
-    snake.draw()
+    snake.draw()  # хуёу
     food.eat(snake.body[len(snake.body) - 1].pos[0], snake.body[len(snake.body) - 1].pos[1])
-
-     # хуёу
 
     draw_grid(const.WIDTH, const.ROWS, screen)
     your_score(score.getter(), 30, 30)
