@@ -32,15 +32,15 @@ Torus_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TE
 Wall_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Wall', const.WHITE)
 PVP_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'PVP', const.WHITE)
 
-Difficult_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Difficult', const.WHITE)
+Difficult_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Speed', const.WHITE)
 Help_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Help', const.WHITE)
 Credits_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Credits', const.WHITE)
 
-dif1_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Speed 1', const.WHITE)
-dif2_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Speed 2', const.WHITE)
-dif3_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Speed 3', const.WHITE)
-dif4_button = cl.Button(const.TEXTX, const.WIDTH/2+50 , const.TEXTH , const.TEXTH, 'Speed 4', const.WHITE)
-dif5_button = cl.Button(const.TEXTX, const.WIDTH/2+100 , const.TEXTH , const.TEXTH, 'Speed 5', const.WHITE)
+dif1_button = cl.Button(const.TEXTX, const.WIDTH/2-120 , const.TEXTH , const.TEXTH, 'Speed 1', const.WHITE)
+dif2_button = cl.Button(const.TEXTX, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'Speed 2', const.WHITE)
+dif3_button = cl.Button(const.TEXTX, const.WIDTH/2-20 , const.TEXTH , const.TEXTH, 'Speed 3', const.WHITE)
+dif4_button = cl.Button(const.TEXTX, const.WIDTH/2+30 , const.TEXTH , const.TEXTH, 'Speed 4', const.WHITE)
+dif5_button = cl.Button(const.TEXTX, const.WIDTH/2+80 , const.TEXTH , const.TEXTH, 'Speed 5', const.WHITE)
 
 def menu(running):
     screen.fill(const.CYAN)
@@ -171,6 +171,7 @@ def difficultmenu(running):
             if event.key == pg.K_BACKSPACE:
                 difficultmenu_running.setter(False)
                 menu_running.setter(True)
+#def Je
 
 
 
