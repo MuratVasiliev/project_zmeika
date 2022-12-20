@@ -6,7 +6,7 @@ import constants as const
 import os
 
 import menu
-leader_score = []
+leader_score = [0,0,0]
 direction_x = cl.NumVariables(1)
 direction_y = cl.NumVariables(0)
 final = cl.BullVariables(False)

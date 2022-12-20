@@ -19,6 +19,7 @@ TEXTH = 50
 
 f1 = pygame.font.Font(None, 24)
 f2 = pygame.font.Font(None, 36)
+f3 = pygame.font.Font(None, 45)
 text1 = f1.render('В режиме тора змейка может проходить сквозь стены', True,
                   WHITE)
 text2= f1.render('В режиме стены змейка не может проходить сквозь стены' , True, WHITE)
@@ -27,3 +28,5 @@ text3 = f1.render('В режиме PVP два игрока сражаются н
 text4 = f2.render('Стексов Иван', True, RED)
 text5 = f2.render('Муратов Василий', True, BLUE)
 text6 = f2.render('Пак Борис', True, WHITE)
+text7 = f3.render ('Your score:', True, WHITE)
+
