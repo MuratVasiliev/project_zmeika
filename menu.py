@@ -47,10 +47,10 @@ dif3_button = cl.Button(const.TEXTX, const.WIDTH/2-20 , const.TEXTH , const.TEXT
 dif4_button = cl.Button(const.TEXTX, const.WIDTH/2+30 , const.TEXTH , const.TEXTH, 'Speed 4', const.WHITE)
 dif5_button = cl.Button(const.TEXTX, const.WIDTH/2+80 , const.TEXTH , const.TEXTH, 'Speed 5', const.WHITE)
 
-help1_button = cl.Button(const.TEXTX, const.WIDTH/2-120 , const.TEXTH , const.TEXTH, 'About Torus', const.WHITE)
-help2_button = cl.Button(const.TEXTX, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'About Wall', const.WHITE)
-help3_button = cl.Button(const.TEXTX, const.WIDTH/2-20 , const.TEXTH , const.TEXTH, 'About PVP', const.WHITE)
-help4_button = cl.Button(const.TEXTX, const.WIDTH/2+30 , const.TEXTH , const.TEXTH, 'Authors', const.WHITE)
+help1_button = cl.Button(const.TEXTX-20, const.WIDTH/2-120 , const.TEXTH , const.TEXTH, 'About Torus', const.WHITE)
+help2_button = cl.Button(const.TEXTX-20, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'About Wall', const.WHITE)
+help3_button = cl.Button(const.TEXTX-20, const.WIDTH/2-20 , const.TEXTH , const.TEXTH, 'About PVP', const.WHITE)
+help4_button = cl.Button(const.TEXTX-20, const.WIDTH/2+30 , const.TEXTH , const.TEXTH, 'Authors', const.WHITE)
 
 def menu(running):
     screen.fill(const.CYAN)
@@ -144,6 +144,7 @@ def optionsmenu(running):
             if event.key == pg.K_ESCAPE:
                 optionsmenu_running.setter(False)
                 menu_running.setter(True)
+
 def difficultmenu(running):
     screen.fill(const.CYAN)
     dif1_button.write_text_on_button(screen)
@@ -191,7 +192,7 @@ def helpmenu(running):
     pg.display.update()
     for event in pg.event.get():
          if event.type == pg.QUIT:
-            difficultmenu_running.setter(False)
+            helpmenu_running.setter(False)
             running.setter(False)
          if event.type == pg.MOUSEBUTTONDOWN:
             if help1_button.is_click(event):
@@ -212,6 +213,31 @@ def helpmenu(running):
                 difficultmenu_running.setter(True)
 
 def help1menu(running):
+    screen.fill(const.CYAN)
+    screen.blit(const.text1, (80, const.WIDTH/2-100))
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            help1menu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                help1menu_running.setter(False)
+                helpmenu_running.setter(True)
+
+def help2menu(running):
+    screen.fill(const.CYAN)
+    screen.blit(const.text2, (65, const.WIDTH/2-100))
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            help2menu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                help2menu_running.setter(False)
+                helpmenu_running.setter(True)
+              
 
 
 
