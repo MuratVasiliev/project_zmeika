@@ -3,6 +3,7 @@ import pygame as pg
 import pygame
 import classes as cl
 import constants as const
+import menu
 
 counter_food = 0
 d = 0
@@ -268,8 +269,12 @@ def snake_loop1():
             if event.key == pygame.K_SPACE:
                 for snake in snakes.list:
                     snake.add_Cube()
+            if event.key == pygame.K_ESCAPE:
+                sn1_running.setter(False)
+                menu.menu_running.setter(True)
         if event.type == pygame.QUIT:
             exit()
+        
     keys = pygame.key.get_pressed()
 
     # if keys[pygame.K_SPACE]:
