@@ -36,6 +36,12 @@ Difficult_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , cons
 Help_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Help', const.WHITE)
 Credits_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Credits', const.WHITE)
 
+dif1_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Speed 1', const.WHITE)
+dif2_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Speed 2', const.WHITE)
+dif3_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Speed 3', const.WHITE)
+dif4_button = cl.Button(const.TEXTX, const.WIDTH/2+50 , const.TEXTH , const.TEXTH, 'Speed 4', const.WHITE)
+dif5_button = cl.Button(const.TEXTX, const.WIDTH/2+100 , const.TEXTH , const.TEXTH, 'Speed 5', const.WHITE)
+
 def menu(running):
     screen.fill(const.CYAN)
     #print(menu_running)
@@ -128,8 +134,43 @@ def optionsmenu(running):
             if event.key == pg.K_BACKSPACE:
                 optionsmenu_running.setter(False)
                 menu_running.setter(True)
-    
-
+def difficultmenu(running):
+    screen.fill(const.CYAN)
+    dif1_button.write_text_on_button(screen)
+    dif2_button.write_text_on_button(screen)
+    dif3_button.write_text_on_button(screen)
+    dif4_button.write_text_on_button(screen)
+    dif5_button.write_text_on_button(screen)
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            difficultmenu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.MOUSEBUTTONDOWN:
+            if dif1_button.is_click(event):
+                difficultmenu_running.setter(False)
+                optionsmenu_running.setter(True)
+                Varriables.difficulty=10
+            if dif2_button.is_click(event):
+                difficultmenu_running.setter(False)
+                optionsmenu_running.setter(True)
+                Varriables.difficulty=20
+            if dif3_button.is_click(event):
+                difficultmenu_running.setter(False)
+                optionsmenu_running.setter(True)
+                Varriables.difficulty=30
+            if dif4_button.is_click(event):
+                difficultmenu_running.setter(False)
+                optionsmenu_running.setter(True)
+                Varriables.difficulty=40
+            if dif5_button.is_click(event):
+                difficultmenu_running.setter(False)
+                optionsmenu_running.setter(True)
+                Varriables.difficulty=50
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_BACKSPACE:
+                difficultmenu_running.setter(False)
+                menu_running.setter(True)
 
 
 
