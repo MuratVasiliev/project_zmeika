@@ -8,12 +8,12 @@ import slitherio as sl
 
 sn.leader_score.sort()
 sn.leader_score.reverse()
+
 phon = pg.image.load('Abubs.jpg')
 width, height = const.WIDTH, const.WIDTH       # Screen's width and height
 background_color = const.CYAN
 pg.init()
 pg.display.init()
-lev=1
 screen = pg.display.set_mode((width, height))
 screen.fill(background_color)
 pg.display.flip()
