@@ -35,27 +35,27 @@ scoremenu_running = cl.BullVariables(False)
 snake_text = cl.Button(const.TEXTX, const.WIDTH / 2 - 225, const.TEXTH+60, const.TEXTH, 'Snake', const.RED)
 play_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 150, const.TEXTH+60, const.TEXTH, 'Play', const.WHITE)
 regime_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 100, const.TEXTH+60, const.TEXTH, 'Regime', const.WHITE)
-options_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 50, const.TEXTH+60, const.TEXTH, 'Options', const.WHITE)
+options_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 50, const.TEXTH+80, const.TEXTH, 'Options', const.WHITE)
 score_button = cl.Button(const.TEXTX, const.WIDTH / 2, const.TEXTH+60, const.TEXTH, 'Score', const.WHITE)
 quit_button = cl.Button(const.TEXTX, const.WIDTH / 2 + 50, const.TEXTH+60, const.TEXTH, 'Quit', const.WHITE)
 
-Torus_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 100, const.TEXTH, const.TEXTH, 'Torus', const.WHITE)
-Wall_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 50, const.TEXTH, const.TEXTH, 'Wall', const.WHITE)
-PVP_button = cl.Button(const.TEXTX, const.WIDTH / 2, const.TEXTH, const.TEXTH, 'PVP', const.WHITE)
+Torus_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 100, const.TEXTH+ 60, const.TEXTH, 'Torus', const.WHITE)
+Wall_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 50, const.TEXTH + 60, const.TEXTH, 'Wall', const.WHITE)
+PVP_button = cl.Button(const.TEXTX, const.WIDTH / 2, const.TEXTH + 60, const.TEXTH, 'PVP', const.WHITE)
 
-Difficult_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 100, const.TEXTH, const.TEXTH, 'Speed', const.WHITE)
-Help_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 50, const.TEXTH, const.TEXTH, 'Help', const.WHITE)
+Difficult_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 100, const.TEXTH+ 60, const.TEXTH, 'Speed', const.WHITE)
+Help_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 50, const.TEXTH +60, const.TEXTH, 'Help', const.WHITE)
 
-dif1_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 120, const.TEXTH, const.TEXTH, 'Speed 1', const.WHITE)
-dif2_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 70, const.TEXTH, const.TEXTH, 'Speed 2', const.WHITE)
-dif3_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 20, const.TEXTH, const.TEXTH, 'Speed 3', const.WHITE)
-dif4_button = cl.Button(const.TEXTX, const.WIDTH / 2 + 30, const.TEXTH, const.TEXTH, 'Speed 4', const.WHITE)
-dif5_button = cl.Button(const.TEXTX, const.WIDTH / 2 + 80, const.TEXTH, const.TEXTH, 'Speed 5', const.WHITE)
+dif1_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 120, const.TEXTH+80, const.TEXTH, 'Speed 1', const.WHITE)
+dif2_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 70, const.TEXTH+80, const.TEXTH, 'Speed 2', const.WHITE)
+dif3_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 20, const.TEXTH+80, const.TEXTH, 'Speed 3', const.WHITE)
+dif4_button = cl.Button(const.TEXTX, const.WIDTH / 2 + 30, const.TEXTH+ 80, const.TEXTH, 'Speed 4', const.WHITE)
+dif5_button = cl.Button(const.TEXTX, const.WIDTH / 2 + 80, const.TEXTH+80, const.TEXTH, 'Speed 5', const.WHITE)
 
-help1_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 120, const.TEXTH, const.TEXTH, 'About Torus', const.WHITE)
-help2_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 70, const.TEXTH, const.TEXTH, 'About Wall', const.WHITE)
-help3_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 20, const.TEXTH, const.TEXTH, 'About PVP', const.WHITE)
-help4_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 + 30, const.TEXTH, const.TEXTH, 'Authors', const.WHITE)
+help1_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 120, const.TEXTH+150, const.TEXTH, 'About Torus', const.WHITE)
+help2_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 70, const.TEXTH+150, const.TEXTH, 'About Wall', const.WHITE)
+help3_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 20, const.TEXTH+150, const.TEXTH, 'About PVP', const.WHITE)
+help4_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 + 30, const.TEXTH+150, const.TEXTH, 'Authors', const.WHITE)
 
 rez1_button =cl.Button(190, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'First result:' + str(sn.leader_score[0]), const.WHITE)
 rez2_button =cl.Button(190, const.WIDTH/2-40 , const.TEXTH , const.TEXTH, 'Second result:' + str(sn.leader_score[1]), const.WHITE)
@@ -96,6 +96,10 @@ def menu(running):
             if options_button.is_click(event):
                 menu_running.setter(False)
                 optionsmenu_running.setter(True)
+            if score_button.is_click(event):
+                menu_running.setter(False)
+                scoremenu_running.setter(True)
+
 
 
 def levelmenu(running):
