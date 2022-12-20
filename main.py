@@ -19,6 +19,8 @@ while running.getter():
         menu.help1menu(running)
     elif menu.help2menu_running.getter():
         menu.help2menu(running)
+    elif menu.help3menu_running.getter():
+        menu.help3menu(running)
     if sn.sn_running.getter():
         sn.snake_loop()
     if sl.sn1_running.getter():
