@@ -24,8 +24,6 @@ while running.getter():
         menu.help3menu(running)
     elif menu.help4menu_running.getter():
         menu.help4menu(running)
-    # elif menu.scoremenu_running.getter():
-    #     menu.scoremenu(running)
     if sn.sn_running.getter():
         sn.snake_loop()
     if sl.sn1_running.getter():
@@ -33,4 +31,3 @@ while running.getter():
     if lb.sn2_running.getter():
         lb.snake_loop2()
 
-    #if sl.sn1_running.getter():
