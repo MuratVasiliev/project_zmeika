@@ -5,7 +5,7 @@ import constants as const
 import Varriables 
 import slitherio as sl
 
-phon=pg.image.load(Abubs.png)
+phon = pg.image.load('Abubs.jpg')
 width, height = const.WIDTH, const.WIDTH       # Screen's width and height
 background_color = const.CYAN
 pg.init()
@@ -14,6 +14,7 @@ lev=1
 screen = pg.display.set_mode((width, height))
 screen.fill(background_color)
 pg.display.flip()
+screen.blit(phon, (0, 0))
 
 menu_running = cl.BullVariables(True)
 levelmenu_running=cl.BullVariables(False)
@@ -56,12 +57,14 @@ help4_button = cl.Button(const.TEXTX-20, const.WIDTH/2+30 , const.TEXTH , const.
 def menu(running):
     screen.fill(const.CYAN)
     #print(menu_running)
+    screen.blit(phon, (0, 0))
     snake_text.write_text_on_button(screen)
     play_button.write_text_on_button(screen)
     quit_button.write_text_on_button(screen)
     regime_button.write_text_on_button(screen)
     options_button.write_text_on_button(screen)
     score_button.write_text_on_button(screen)
+
     pg.display.update()
     for event in pg.event.get():
         if event.type == pg.QUIT:
