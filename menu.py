@@ -5,6 +5,7 @@ import constants as const
 import Varriables 
 import slitherio as sl
 
+phon = pg.image.load('Abubs.jpg')
 width, height = const.WIDTH, const.WIDTH       # Screen's width and height
 background_color = const.CYAN
 pg.init()
@@ -20,7 +21,6 @@ levelmenu_running=cl.BullVariables(False)
 optionsmenu_running=cl.BullVariables(False)
 difficultmenu_running=cl.BullVariables(False)
 helpmenu_running=cl.BullVariables(False)
-creditsmenu_running=cl.BullVariables(False)
 helpmenu_running = cl.BullVariables(False)
 help1menu_running = cl.BullVariables(False)
 help2menu_running = cl.BullVariables(False)
@@ -40,7 +40,6 @@ PVP_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, '
 
 Difficult_button = cl.Button(const.TEXTX, const.WIDTH/2-100 , const.TEXTH , const.TEXTH, 'Speed', const.WHITE)
 Help_button = cl.Button(const.TEXTX, const.WIDTH/2-50 , const.TEXTH , const.TEXTH, 'Help', const.WHITE)
-Credits_button = cl.Button(const.TEXTX, const.WIDTH/2 , const.TEXTH , const.TEXTH, 'Credits', const.WHITE)
 
 dif1_button = cl.Button(const.TEXTX, const.WIDTH/2-120 , const.TEXTH , const.TEXTH, 'Speed 1', const.WHITE)
 dif2_button = cl.Button(const.TEXTX, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'Speed 2', const.WHITE)
@@ -125,7 +124,6 @@ def optionsmenu(running):
     screen.fill(const.CYAN)
     Difficult_button.write_text_on_button(screen)
     Help_button.write_text_on_button(screen)
-    Credits_button.write_text_on_button(screen)
     pg.display.update()
     for event in pg.event.get():
          if event.type == pg.QUIT:
@@ -139,10 +137,6 @@ def optionsmenu(running):
             if Help_button.is_click(event):
                 optionsmenu_running.setter(False)
                 helpmenu_running.setter(True)
-         if event.type == pg.MOUSEBUTTONDOWN:
-            if Credits_button.is_click(event):
-                optionsmenu_running.setter(False)
-                creditsmenu_running.setter(True)
          if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 optionsmenu_running.setter(False)
@@ -184,7 +178,7 @@ def difficultmenu(running):
          if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 difficultmenu_running.setter(False)
-                menu_running.setter(True)
+                optionsmenu_running.setter(True)
 
 def helpmenu(running):
     screen.fill(const.CYAN)
@@ -213,7 +207,7 @@ def helpmenu(running):
          if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 helpmenu_running.setter(False)
-                difficultmenu_running.setter(True)
+                optionsmenu_running.setter(True)
 
 def help1menu(running):
     screen.fill(const.CYAN)
@@ -268,6 +262,7 @@ def help4menu(running):
             if event.key == pg.K_ESCAPE:
                 help4menu_running.setter(False)
                 helpmenu_running.setter(True)
+
               
 
 
