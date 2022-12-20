@@ -1,4 +1,5 @@
 
+import Varriables
 GREEN = (0, 255, 50)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -9,7 +10,7 @@ CYAN= (0, 200, 100)
 WIDTH = 600
 ROWS = 20
 DIS = WIDTH // ROWS
-FPS = 15
+FPS = 10
 NUMBER_SIZE = 60
 TEXTX = WIDTH/2-75
 TEXTH = 50
