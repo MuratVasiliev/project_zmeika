@@ -212,7 +212,7 @@ def helpmenu(running):
                 helpmenu_running.setter(False)
                 difficultmenu_running.setter(True)
 
-def help1menu(running):
+#def help1menu(running):
     screen.fill(const.CYAN)
     screen.blit(const.text1, (80, const.WIDTH/2-100))
     pg.display.update()

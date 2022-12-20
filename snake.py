@@ -6,7 +6,7 @@ import constants as const
 import os
 
 import menu
-
+leader_score = []
 direction_x = cl.NumVariables(1)
 direction_y = cl.NumVariables(0)
 final = cl.BullVariables(False)
@@ -153,6 +153,7 @@ def snake_loop():
                 screen.fill(const.BLUE)
                 message("Вы проиграли!", const.BLACK, 230, 200)
                 your_score(score.getter(),230, const.WIDTH/2)
+                leader_score.append(score)
                 message("Для выхода в меню нажмите Enter", const.BLACK, 100, 500)
                 pg.display.update()
                 for event in pg.event.get():
