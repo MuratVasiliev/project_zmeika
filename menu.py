@@ -150,23 +150,23 @@ def difficultmenu(running):
             if dif1_button.is_click(event):
                 difficultmenu_running.setter(False)
                 optionsmenu_running.setter(True)
-                Varriables.difficulty=10
+                const.FPS = 10
             if dif2_button.is_click(event):
                 difficultmenu_running.setter(False)
                 optionsmenu_running.setter(True)
-                Varriables.difficulty=20
+                const.FPS = 12
             if dif3_button.is_click(event):
                 difficultmenu_running.setter(False)
                 optionsmenu_running.setter(True)
-                Varriables.difficulty=30
+                const.FPS = 14
             if dif4_button.is_click(event):
                 difficultmenu_running.setter(False)
                 optionsmenu_running.setter(True)
-                Varriables.difficulty=40
+                const.FPS = 16
             if dif5_button.is_click(event):
                 difficultmenu_running.setter(False)
                 optionsmenu_running.setter(True)
-                Varriables.difficulty=50
+                const.FPS = 18
          if event.type == pg.KEYDOWN:
             if event.key == pg.K_BACKSPACE:
                 difficultmenu_running.setter(False)
