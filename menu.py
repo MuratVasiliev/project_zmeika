@@ -5,6 +5,9 @@ import constants as const
 import Varriables
 import slitherio as sl
 
+sn.leader_score.sort()
+sn.leader_score.reverse()
+
 phon = pg.image.load('Abubs.jpg')
 width, height = const.WIDTH, const.WIDTH  # Screen's width and height
 background_color = const.CYAN
@@ -27,6 +30,7 @@ help1menu_running = cl.BullVariables(False)
 help2menu_running = cl.BullVariables(False)
 help3menu_running = cl.BullVariables(False)
 help4menu_running = cl.BullVariables(False)
+scoremenu_running = cl.BullVariables(False)
 
 snake_text = cl.Button(const.TEXTX, const.WIDTH / 2 - 225, const.TEXTH, const.TEXTH, 'Snake', const.RED)
 play_button = cl.Button(const.TEXTX, const.WIDTH / 2 - 150, const.TEXTH, const.TEXTH, 'Play', const.WHITE)
@@ -54,6 +58,9 @@ help2_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 70, const.TEXTH, co
 help3_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 - 20, const.TEXTH, const.TEXTH, 'About PVP', const.WHITE)
 help4_button = cl.Button(const.TEXTX - 20, const.WIDTH / 2 + 30, const.TEXTH, const.TEXTH, 'Authors', const.WHITE)
 
+rez1_button =cl.Button(190, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'First result:' + str(sn.leader_score[0]), const.WHITE)
+rez2_button =cl.Button(190, const.WIDTH/2-40 , const.TEXTH , const.TEXTH, 'Second result:' + str(sn.leader_score[1]), const.WHITE)
+rez3_button =cl.Button(190, const.WIDTH/2-10 , const.TEXTH , const.TEXTH, 'Third result:' + str(sn.leader_score[2]), const.WHITE)
 
 def menu(running):
     screen.fill(const.CYAN)
@@ -276,3 +283,19 @@ def help4menu(running):
             if event.key == pg.K_ESCAPE:
                 help4menu_running.setter(False)
                 helpmenu_running.setter(True)
+
+def scoremenu(running):
+    screen.fill(const.CYAN)
+    screen.blit(const.text7, (210, const.WIDTH/2-100))
+    rez1_button.write_text_on_button(screen)
+    rez2_button.write_text_on_button(screen)
+    rez3_button.write_text_on_button(screen)
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            help4menu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                scoremenu_running.setter(False)
+                menu_running.setter(True)
