@@ -164,11 +164,11 @@ def snake_loop():
                 message("Вы проиграли!", const.BLACK, 230, 200)
                 your_score(score.getter(), 230, const.WIDTH / 2)
                 leader_score.append(score)
-                message("Для выхода в меню нажмите Enter", const.BLACK, 100, 500)
+                message("Для выхода в меню нажмите Escape", const.BLACK, 100, 500)
                 pg.display.update()
                 for event in pg.event.get():
                     if event.type == pg.KEYDOWN:
-                        if event.key == pg.K_RETURN:
+                        if event.key == pg.K_ESCAPE:
                             score.setter(0)
                             snake.reborn()
                             sn_running.setter(False)

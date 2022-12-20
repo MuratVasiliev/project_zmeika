@@ -288,7 +288,7 @@ def scoremenu(running):
     pg.display.update()
     for event in pg.event.get():
          if event.type == pg.QUIT:
-            help4menu_running.setter(False)
+            scoremenu_running.setter(False)
             running.setter(False)
          if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
