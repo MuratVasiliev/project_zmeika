@@ -122,7 +122,6 @@ def snake_loop():
     pg.display.update()
     clock.tick(const.FPS)
     screen.fill(pg.Color('#EFFFA5'))
-    your_score(score.getter(),30,30)
     for event in pg.event.get():  # изменение направления и приращение попы на пробел
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_UP and direction_y.getter() != 1:
@@ -170,3 +169,4 @@ def snake_loop():
 
     snake.draw()  # хуёу
     draw_grid(const.WIDTH, const.ROWS, screen)
+    your_score(score.getter(),30,30)
