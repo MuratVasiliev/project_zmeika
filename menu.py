@@ -250,9 +250,6 @@ def help2menu(running):
 def help3menu(running):
     screen.fill(const.CYAN)
     screen.blit(const.text3, (70, const.WIDTH/2-100))
-    help1_button.write_text_on_button(screen)
-    help2_button.write_text_on_button(screen)
-    help3_button.write_text_on_button(screen)
     pg.display.update()
     for event in pg.event.get():
          if event.type == pg.QUIT:
