@@ -254,6 +254,21 @@ def help3menu(running):
             if event.key == pg.K_ESCAPE:
                 help3menu_running.setter(False)
                 helpmenu_running.setter(True)
+
+def help4menu(running):
+    screen.fill(const.CYAN)
+    screen.blit(const.text4, (190, const.WIDTH/2-100+50))
+    screen.blit(const.text5, (190, const.WIDTH/2-140+50))
+    screen.blit(const.text6, (190, const.WIDTH/2-180+50))
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            help4menu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                help4menu_running.setter(False)
+                helpmenu_running.setter(True)
               
 
 
