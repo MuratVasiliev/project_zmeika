@@ -181,6 +181,7 @@ def difficultmenu(running):
             if event.key == pg.K_ESCAPE:
                 difficultmenu_running.setter(False)
                 menu_running.setter(True)
+
 def helpmenu(running):
     screen.fill(const.CYAN)
     help1_button.write_text_on_button(screen)
@@ -209,6 +210,9 @@ def helpmenu(running):
             if event.key == pg.K_ESCAPE:
                 helpmenu_running.setter(False)
                 difficultmenu_running.setter(True)
+
+def help1menu(running):
+
 
 
 
