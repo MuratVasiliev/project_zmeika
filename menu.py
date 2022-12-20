@@ -18,8 +18,13 @@ menu_running = cl.BullVariables(True)
 levelmenu_running=cl.BullVariables(False)
 optionsmenu_running=cl.BullVariables(False)
 difficultmenu_running=cl.BullVariables(False)
-Helpmenu_running=cl.BullVariables(False)
-Creditsmenu_running=cl.BullVariables(False)
+helpmenu_running=cl.BullVariables(False)
+creditsmenu_running=cl.BullVariables(False)
+helpmenu_running = cl.BullVariables(False)
+help1menu_running = cl.BullVariables(False)
+help2menu_running = cl.BullVariables(False)
+help3menu_running = cl.BullVariables(False)
+help4menu_running = cl.BullVariables(False)
 
 snake_text = cl.Button (const.TEXTX, const.WIDTH/2-225, const.TEXTH, const.TEXTH,'Snake', const.RED)
 play_button = cl.Button(const.TEXTX, const.WIDTH/2-150, const.TEXTH, const.TEXTH,'Play', const.WHITE)
@@ -41,6 +46,11 @@ dif2_button = cl.Button(const.TEXTX, const.WIDTH/2-70 , const.TEXTH , const.TEXT
 dif3_button = cl.Button(const.TEXTX, const.WIDTH/2-20 , const.TEXTH , const.TEXTH, 'Speed 3', const.WHITE)
 dif4_button = cl.Button(const.TEXTX, const.WIDTH/2+30 , const.TEXTH , const.TEXTH, 'Speed 4', const.WHITE)
 dif5_button = cl.Button(const.TEXTX, const.WIDTH/2+80 , const.TEXTH , const.TEXTH, 'Speed 5', const.WHITE)
+
+help1_button = cl.Button(const.TEXTX, const.WIDTH/2-120 , const.TEXTH , const.TEXTH, 'About Torus', const.WHITE)
+help2_button = cl.Button(const.TEXTX, const.WIDTH/2-70 , const.TEXTH , const.TEXTH, 'About Wall', const.WHITE)
+help3_button = cl.Button(const.TEXTX, const.WIDTH/2-20 , const.TEXTH , const.TEXTH, 'About PVP', const.WHITE)
+help4_button = cl.Button(const.TEXTX, const.WIDTH/2+30 , const.TEXTH , const.TEXTH, 'Authors', const.WHITE)
 
 def menu(running):
     screen.fill(const.CYAN)
@@ -104,7 +114,7 @@ def levelmenu(running):
                 menu_running.setter(True)
                 Varriables.lev=3
          if event.type == pg.KEYDOWN:
-            if event.key == pg.K_BACKSPACE:
+            if event.key == pg.K_ESCAPE:
                 levelmenu_running.setter(False)
                 menu_running.setter(True)
 
@@ -125,13 +135,13 @@ def optionsmenu(running):
          if event.type == pg.MOUSEBUTTONDOWN:
             if Help_button.is_click(event):
                 optionsmenu_running.setter(False)
-                Helpmenu_running.setter(True)
+                helpmenu_running.setter(True)
          if event.type == pg.MOUSEBUTTONDOWN:
             if Credits_button.is_click(event):
                 optionsmenu_running.setter(False)
-                Creditsmenu_running.setter(True)
+                creditsmenu_running.setter(True)
          if event.type == pg.KEYDOWN:
-            if event.key == pg.K_BACKSPACE:
+            if event.key == pg.K_ESCAPE:
                 optionsmenu_running.setter(False)
                 menu_running.setter(True)
 def difficultmenu(running):
@@ -168,10 +178,38 @@ def difficultmenu(running):
                 optionsmenu_running.setter(True)
                 Varriables.difficulty=50
          if event.type == pg.KEYDOWN:
-            if event.key == pg.K_BACKSPACE:
+            if event.key == pg.K_ESCAPE:
                 difficultmenu_running.setter(False)
                 menu_running.setter(True)
-#def Je
+def helpmenu(running):
+    screen.fill(const.CYAN)
+    help1_button.write_text_on_button(screen)
+    help2_button.write_text_on_button(screen)
+    help3_button.write_text_on_button(screen)
+    help4_button.write_text_on_button(screen)
+    pg.display.update()
+    for event in pg.event.get():
+         if event.type == pg.QUIT:
+            difficultmenu_running.setter(False)
+            running.setter(False)
+         if event.type == pg.MOUSEBUTTONDOWN:
+            if help1_button.is_click(event):
+                helpmenu_running.setter(False)
+                help1menu_running.setter(True)
+            if help2_button.is_click(event):
+                helpmenu_running.setter(False)
+                help2menu_running.setter(True)
+            if help3_button.is_click(event):
+                helpmenu_running.setter(False)
+                help3menu_running.setter(True)
+            if help4_button.is_click(event):
+                helpmenu_running.setter(False)
+                help4menu_running.setter(True)            
+         if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                helpmenu_running.setter(False)
+                difficultmenu_running.setter(True)
+
 
 
 
