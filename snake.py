@@ -176,7 +176,7 @@ def snake_loop():
                             final.changer()
 
             print('fuck')
-    snake.draw()  # хуёу
+    snake.draw()  
     food.eat(snake.body[len(snake.body) - 1].pos[0], snake.body[len(snake.body) - 1].pos[1])
 
     draw_grid(const.WIDTH, const.ROWS, screen)
